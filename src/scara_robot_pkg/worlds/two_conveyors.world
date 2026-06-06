@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <gravity>0 0 -9.8</gravity>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <scene>
+      <shadows>0</shadows>
+    </scene>
+    <!-- Belt 1: original, runs along Y axis at origin -->
+    <include>
+      <name>conveyor_belt</name>
+      <pose>0 0 0 0 0 0</pose>
+      <uri>model://conveyor_belt</uri>
+    </include>
+    <!-- Belt 2: perpendicular to belt 1, runs along X axis at (-1,-1,0) -->
+    <include>
+      <name>conveyor_belt_2</name>
+      <pose>-1 -1 0 0 0 -1.5708</pose>
+      <uri>model://conveyor_belt_2</uri>
+    </include>
+  </world>
+</sdf>

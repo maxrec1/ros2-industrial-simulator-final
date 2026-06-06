@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="scara_assembly">
+
+    <!-- Include the base URDF kinematic description -->
+    <xacro:include filename="$(find scara_robot_pkg)/urdf/scara_assembly.urdf"/>
+
+    <!-- Include Gazebo ros2_control hardware interface -->
+    <xacro:include filename="$(find scara_robot_pkg)/urdf/scara_ros2_control_gazebo.xacro"/>
+    <xacro:scara_ros2_control_gazebo name="ScaraGazeboSystem"/>
+
+    <!-- Gazebo ros2_control plugin -->
+    <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <parameters>$(find scara_moveit_config)/config/ros2_controllers.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+    <!-- Gazebo material colours -->
+    <gazebo reference="base_link">
+        <material>Gazebo/DarkGrey</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="Link_1">
+        <material>Gazebo/Grey</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="Link_2">
+        <material>Gazebo/Grey</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="Link_3">
+        <material>Gazebo/Blue</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
+    <gazebo reference="Link_4">
+        <material>Gazebo/Blue</material>
+        <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <!-- Fix base_link to world so the robot doesn't fall over -->
+    <link name="world"/>
+    <joint name="world_fixed" type="fixed">
+        <parent link="world"/>
+        <child link="base_link"/>
+        <origin xyz="-1 0 0.8" rpy="0 0 0"/>
+    </joint>
+
+</robot>

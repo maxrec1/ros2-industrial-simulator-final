@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PCB URDF - Automatically generated and adapted for conveyorbelt_gazebo package -->
+<robot name="pcb">
+  <link name="base_link_pcb">
+    <inertial>
+      <origin xyz="0 0 0.00475" rpy="0 0 0" />
+      <mass value="0.0383" />
+      <inertia
+        ixx="3.19E-05"
+        ixy="2.91E-10"
+        ixz="0.0"
+        iyy="1.02E-05"
+        iyz="0.0"
+        izz="4.18E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="-3.0173 -4.3763 -6.4655" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://conveyorbelt_gazebo/meshes/pcb/base_link_PCB.STL" scale="5.0 5.0 5.0" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-3.0173 -4.3763 -6.4655" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://conveyorbelt_gazebo/meshes/pcb/base_link_PCB.STL" scale="5.0 5.0 5.0" />
+      </geometry>
+      <surface>
+        <contact>
+          <collide_without_contact>false</collide_without_contact>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <gazebo reference="base_link_pcb">
+    <material>Gazebo/Green</material>
+    <mu1>100.0</mu1>
+    <mu2>100.0</mu2>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+</robot>

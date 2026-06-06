@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="bobby_v3">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-6.93889390390723E-18 -8.67361737988404E-18 0.00903009179983284"
+        rpy="0 0 0" />
+      <mass
+        value="0.168853238991176" />
+      <inertia
+        ixx="0.000188908722369925"
+        ixy="-5.7902642878712E-21"
+        ixz="4.9831826221772E-21"
+        iyy="0.000188908722369926"
+        iyz="-1.68425616825269E-20"
+        izz="0.000347553571686864" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="-2.15652112519824E-07 0.0107734448420019 0.109157368914489"
+        rpy="0 0 0" />
+      <mass
+        value="0.19567354215977" />
+      <inertia
+        ixx="0.00036569472644765"
+        ixy="3.25955315579442E-10"
+        ixz="1.75361435601525E-09"
+        iyy="0.000399646100597159"
+        iyz="5.8509284245807E-07"
+        izz="0.000228564395108126" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="1.5" />
+    <dynamics
+      damping="0.2" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="-1.60868451060114E-08 -0.114041602248857 0.132749921878617"
+        rpy="0 0 0" />
+      <mass
+        value="0.277035202004268" />
+      <inertia
+        ixx="0.00289478457764281"
+        ixy="-1.24048336188053E-09"
+        ixz="1.22368569354385E-09"
+        iyy="0.000189976410051189"
+        iyz="7.94253254153287E-05"
+        izz="0.00286373711090803" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0 0 0.11"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="60"
+      velocity="1.5" />
+    <dynamics
+      damping="0.15" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="-4.46835846875521E-07 -0.021332834225784 0.336950985055037"
+        rpy="0 0 0" />
+      <mass
+        value="0.104323112073039" />
+      <inertia
+        ixx="0.000172552084016025"
+        ixy="1.24275852401533E-10"
+        ixz="-1.16774421742549E-10"
+        iyy="5.69008711097092E-05"
+        iyz="6.87130934985452E-06"
+        izz="0.000165314592613562" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="revolute">
+    <origin
+      xyz="0 0 0.135"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2.5"
+      upper="2.5"
+      effort="40"
+      velocity="2" />
+    <dynamics
+      damping="0.1" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="-7.35759638319233E-08 0.0214973669189123 0.127010226840711"
+        rpy="0 0 0" />
+      <mass
+        value="0.104021403954901" />
+      <inertia
+        ixx="0.000172095228395825"
+        ixy="5.22139873101622E-11"
+        ixz="-7.41592698784508E-11"
+        iyy="5.67379606621111E-05"
+        iyz="-6.68507413422721E-06"
+        izz="0.000164961710546567" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0 0.000262563950500366 0.34"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="20"
+      velocity="3" />
+    <dynamics
+      damping="0.05" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="-7.72747078825464E-09 0.0118852064404541 0.124078122231419"
+        rpy="0 0 0" />
+      <mass
+        value="0.0635312499775335" />
+      <inertia
+        ixx="5.3078651829625E-05"
+        ixy="-2.16462957974075E-11"
+        ixz="-2.18923663634894E-11"
+        iyy="2.59966766341151E-05"
+        iyz="-4.43828682190682E-06"
+        izz="4.66910033521407E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="0 -0.000178126389957234 0.13"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2"
+      upper="2"
+      effort="15"
+      velocity="3.5" />
+    <dynamics
+      damping="0.05" />
+  </joint>
+  <link
+    name="link_6">
+    <inertial>
+      <origin
+        xyz="-9.09411435046081E-14 -4.99933427988708E-13 0.00443393044915172"
+        rpy="0 0 0" />
+      <mass
+        value="0.0247796339074861" />
+      <inertia
+        ixx="5.79719477129161E-06"
+        ixy="1.69371937738642E-21"
+        ixz="-1.74584771115396E-21"
+        iyy="5.61206813663289E-06"
+        iyz="1.25047386620786E-20"
+        izz="8.2664668127508E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6"
+    type="revolute">
+    <origin
+      xyz="0 0.0700000000012193 0.129999999999002"
+      rpy="-1.57079632679489 0 0" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="10"
+      velocity="4" />
+    <dynamics
+      damping="0.03" />
+  </joint>
+  <link
+    name="link_7">
+    <inertial>
+      <origin
+        xyz="1.75537431812423E-11 0.0192976909411828 0.0681411225649775"
+        rpy="0 0 0" />
+      <mass
+        value="0.0118127899422585" />
+      <inertia
+        ixx="6.09351399627519E-06"
+        ixy="3.22608936690269E-21"
+        ixz="-1.74909033102813E-21"
+        iyy="5.77080354257706E-06"
+        iyz="-2.15030094952429E-07"
+        izz="6.61357153534734E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_7"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_6" />
+    <child
+      link="link_7" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="5"
+      velocity="2" />
+    <dynamics
+      damping="0.02" />
+  </joint>
+  <link
+    name="link_8">
+    <inertial>
+      <origin
+        xyz="1.75541386981948E-11 -0.0192976909411825 0.0681411225649777"
+        rpy="0 0 0" />
+      <mass
+        value="0.0118127899422585" />
+      <inertia
+        ixx="6.09351399627517E-06"
+        ixy="3.27515054611604E-21"
+        ixz="-5.11777688517086E-21"
+        iyy="5.77080354257705E-06"
+        iyz="2.15030094952396E-07"
+        izz="6.61357153534731E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://bobby/meshes/link_8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_8"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_6" />
+    <child
+      link="link_8" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_7"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link name="TCP"/>
+  <joint
+    name="TCP"
+    type="fixed">
+    <origin
+      xyz="0 0 0.11903"
+      rpy="0 0 0" />
+    <parent
+      link="link_6" />
+    <child
+      link="TCP" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>

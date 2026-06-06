@@ -1,0 +1,21 @@
+joint_names:
+  - Joint_1
+  - Joint_2
+  - Joint_3
+  - Joint_4
+
+default_timing_sec: 2.5
+
+stages:
+  pre_pick:
+    positions: [0.25, -1.60, -0.10, 0.0]
+  pick:
+    positions: [0.25, -1.60, -0.33, 0.0]
+  lift:
+    positions: [0.25, -1.60, -0.10, 0.0]
+  pre_place:
+    positions: [1.05, -1.30, -0.10, 0.0]
+  place:
+    positions: [1.05, -1.30, -0.33, 0.0]
+  retreat:
+    positions: [0.60, -1.00, -0.05, 0.0]

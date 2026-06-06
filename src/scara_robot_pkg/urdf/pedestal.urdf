@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="pedestal">
+  <link name="pedestal_link">
+    <!-- Cylinder shaft: 0.7 m tall, center at z=0.35 -->
+    <visual>
+      <origin xyz="0 0 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.12" length="0.7"/>
+      </geometry>
+      <material name="dark_grey">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+    <!-- Square mounting block: 0.1 m tall, sits from z=0.7 to z=0.8 (robot base) -->
+    <visual>
+      <origin xyz="0 0 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.25 0.25 0.1"/>
+      </geometry>
+      <material name="dark_grey">
+        <color rgba="0.3 0.3 0.3 1.0"/>
+      </material>
+    </visual>
+    <!-- Combined collision -->
+    <collision>
+      <origin xyz="0 0 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.12" length="0.7"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 0 0.75" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.25 0.25 0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="20.0"/>
+      <origin xyz="0 0 0.4" rpy="0 0 0"/>
+      <inertia ixx="1.1" ixy="0" ixz="0" iyy="1.1" iyz="0" izz="0.14"/>
+    </inertial>
+  </link>
+  <gazebo reference="pedestal_link">
+    <material>Gazebo/DarkGrey</material>
+    <static>true</static>
+  </gazebo>
+</robot>

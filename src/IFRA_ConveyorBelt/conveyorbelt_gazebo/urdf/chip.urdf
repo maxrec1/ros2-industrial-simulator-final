@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CHIP URDF - Automatically generated and adapted for conveyorbelt_gazebo package -->
+<robot name="chip">
+  <link name="base_link_chip">
+    <inertial>
+      <origin xyz="0 0 0.00225" rpy="0 0 0" />
+      <mass value="0.0055" />
+      <inertia
+        ixx="5.71E-07"
+        ixy="-1.02E-09"
+        ixz="-1.76E-10"
+        iyy="5.71E-07"
+        iyz="1.76E-10"
+        izz="1.12E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="-2.9300 -4.3990 -6.4985" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://conveyorbelt_gazebo/meshes/chip/base_link_chip.STL" scale="5.0 5.0 5.0" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-2.9300 -4.3990 -6.4985" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://conveyorbelt_gazebo/meshes/chip/base_link_chip.STL" scale="5.0 5.0 5.0" />
+      </geometry>
+      <surface>
+        <contact>
+          <collide_without_contact>false</collide_without_contact>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <gazebo reference="base_link_chip">
+    <material>Gazebo/Grey</material>
+    <mu1>100.0</mu1>
+    <mu2>100.0</mu2>
+    <selfCollide>false</selfCollide>
+  </gazebo>
+
+</robot>

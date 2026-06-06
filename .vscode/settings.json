@@ -1,0 +1,21 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /home/maxrec/projects/ros2-industrial-robot-simulation/src/scara_robot_pkg && mv resource/view_robot_pkg resource/scara_robot_pkg && mv view_robot_pkg scara_robot_pkg && echo \"Renamed inner dirs\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "git submodule": true,
+        "/^source /opt/ros/humble/setup\\.bash && cd ~/ws_moveit && colcon build --mixin release --executor sequential --parallel-workers 1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^mkdir -p /home/maxrec/projects/ros2-industrial-robot-simulation/src/IFRA_ConveyorBelt/conveyorbelt_gazebo/meshes/pcb /home/maxrec/projects/ros2-industrial-robot-simulation/src/IFRA_ConveyorBelt/conveyorbelt_gazebo/meshes/chip && echo \"Directories created successfully\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^source /home/maxrec/projects/ros2-industrial-robot-simulation/install/setup\\.bash && cd /home/maxrec/projects/ros2-industrial-robot-simulation && colcon build --packages-select conveyorbelt_gazebo ros2_conveyorbelt scara_robot_pkg --symlink-install 2>&1 \\| tail -50$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
