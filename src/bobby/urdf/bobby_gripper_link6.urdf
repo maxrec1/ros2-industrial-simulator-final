@@ -29,9 +29,9 @@
           filename="package://bobby/meshes/base_link.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="1 1 1 1" />
       </material>
     </visual>
     <collision>
@@ -69,9 +69,9 @@
           filename="package://bobby/meshes/link_1.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -129,9 +129,9 @@
           filename="package://bobby/meshes/link_2.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -189,9 +189,9 @@
           filename="package://bobby/meshes/link_3.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -249,9 +249,9 @@
           filename="package://bobby/meshes/link_4.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -309,9 +309,9 @@
           filename="package://bobby/meshes/link_5.STL" />
       </geometry>
       <material
-        name="technikum_grau">
+        name="">
         <color
-          rgba="0.447 0.471 0.478 1" />
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
       </material>
     </visual>
     <collision>
@@ -360,15 +360,6 @@
         iyz="1.25047386620786E-20"
         izz="8.2664668127508E-06" />
     </inertial>
-    <visual>
-      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/link_6.STL" scale="0.001 0.001 0.001"/></geometry>
-      <material name="technikum_grau"><color rgba="0.447 0.471 0.478 1"/></material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 -0.005" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/link_6.STL" scale="0.001 0.001 0.001"/></geometry>
-    </collision>
   </link>
   <joint
     name="joint_6"
@@ -400,12 +391,12 @@
     </inertial>
     <visual>
       <origin xyz="0 0 0.005" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/gripper_flange.STL" scale="0.001 0.001 0.001"/></geometry>
-      <material name="technikum_blau"><color rgba="0 0.392 0.612 1"/></material>
+      <geometry><cylinder radius="0.0315" length="0.01"/></geometry>
+      <material name="gripper_grey"><color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/></material>
     </visual>
     <collision>
       <origin xyz="0 0 0.005" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/gripper_flange.STL" scale="0.001 0.001 0.001"/></geometry>
+      <geometry><cylinder radius="0.0315" length="0.01"/></geometry>
     </collision>
   </link>
   <joint name="gripper_flange_joint" type="fixed">
@@ -419,17 +410,17 @@
   <link name="gripper_base">
     <inertial>
       <origin xyz="0 0 0.015" rpy="0 0 0"/>
-      <mass value="0.028"/>
-      <inertia ixx="2.333e-06" ixy="0" ixz="0" iyy="2.357e-05" iyz="0" izz="2.543e-05"/>
+      <mass value="0.045"/>
+      <inertia ixx="3.75e-06" ixy="0" ixz="0" iyy="9.638e-05" iyz="0" izz="9.938e-05"/>
     </inertial>
     <visual>
       <origin xyz="0 0 0.015" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/gripper_base.STL" scale="0.001 0.001 0.001"/></geometry>
-      <material name="technikum_blau"/>
+      <geometry><box size="0.16 0.03 0.01"/></geometry>
+      <material name="gripper_grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0.015" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/gripper_base.STL" scale="0.001 0.001 0.001"/></geometry>
+      <geometry><box size="0.16 0.03 0.01"/></geometry>
     </collision>
   </link>
   <joint name="gripper_base_joint" type="fixed">
@@ -448,20 +439,21 @@
     </inertial>
     <visual>
       <origin xyz="0 0 0.045" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/finger_left.STL" scale="0.001 0.001 0.001"/></geometry>
-      <material name="technikum_gruen"><color rgba="0.545 0.702 0.114 1"/></material>
+      <geometry><box size="0.01 0.02 0.09"/></geometry>
+      <material name="gripper_grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0.045" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/finger_left.STL" scale="0.001 0.001 0.001"/></geometry>
+      <geometry><box size="0.01 0.02 0.09"/></geometry>
     </collision>
   </link>
   <joint name="finger_left_joint" type="prismatic">
-    <origin xyz="0.006 0 0.021" rpy="0 0 0"/>
+    <origin xyz="0.005 0 0.060000000000000005" rpy="0 0 0"/>
     <parent link="gripper_base"/>
     <child link="finger_left"/>
     <axis xyz="1 0 0"/>
-    <limit lower="0" upper="0.04" effort="50" velocity="0.1"/>
+    <limit lower="0" upper="0.075" effort="50" velocity="0.1"/>
+    <dynamics damping="5.0"/>
   </joint>
 
   <!-- Rechte Backe (gegenläufig gekoppelt) -->
@@ -473,27 +465,28 @@
     </inertial>
     <visual>
       <origin xyz="0 0 0.045" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/finger_left.STL" scale="0.001 0.001 0.001"/></geometry>
-      <material name="technikum_gruen"><color rgba="0.545 0.702 0.114 1"/></material>
+      <geometry><box size="0.01 0.02 0.09"/></geometry>
+      <material name="gripper_grey"/>
     </visual>
     <collision>
       <origin xyz="0 0 0.045" rpy="0 0 0"/>
-      <geometry><mesh filename="package://bobby/meshes/finger_left.STL" scale="0.001 0.001 0.001"/></geometry>
+      <geometry><box size="0.01 0.02 0.09"/></geometry>
     </collision>
   </link>
   <joint name="finger_right_joint" type="prismatic">
-    <origin xyz="-0.006 0 0.021" rpy="0 0 0"/>
+    <origin xyz="-0.005 0 0.060000000000000005" rpy="0 0 0"/>
     <parent link="gripper_base"/>
     <child link="finger_right"/>
     <axis xyz="1 0 0"/>
-    <limit lower="-0.04" upper="0" effort="50" velocity="0.1"/>
+    <limit lower="-0.075" upper="0" effort="50" velocity="0.1"/>
     <mimic joint="finger_left_joint" multiplier="-1" offset="0"/>
+    <dynamics damping="5.0"/>
   </joint>
 
   <!-- TCP: mittig zwischen den Backen, an der Backenspitze -->
   <link name="TCP"/>
   <joint name="TCP_joint" type="fixed">
-    <origin xyz="0 0 0.111" rpy="0 0 0"/>
+    <origin xyz="0 0 0.15" rpy="0 0 0"/>
     <parent link="gripper_base"/>
     <child link="TCP"/>
     <axis xyz="0 0 0"/>

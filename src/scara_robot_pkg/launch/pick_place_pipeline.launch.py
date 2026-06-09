@@ -21,7 +21,7 @@ def generate_launch_description():
     )
 
     moveit_launch = TimerAction(
-        period=6.0,
+        period=70.0,
         actions=[
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
@@ -37,7 +37,7 @@ def generate_launch_description():
     )
 
     scene_publisher = TimerAction(
-        period=9.0,
+        period=75.0,
         actions=[
             Node(
                 package='scara_robot_pkg',
@@ -56,7 +56,7 @@ def generate_launch_description():
 
     pick_place_config = os.path.join(scara_pkg, 'config', 'pick_place_joints.yaml')
     pick_place_cycle = TimerAction(
-        period=14.0,
+        period=85.0,
         actions=[
             Node(
                 package='scara_robot_pkg',
@@ -69,7 +69,7 @@ def generate_launch_description():
 
     # Spawn PCB on conveyor1 (belt1) with delay
     spawn_pcb = TimerAction(
-        period=12.0,
+        period=80.0,
         actions=[
             ExecuteProcess(
                 cmd=['ros2', 'run', 'ros2_conveyorbelt', 'SpawnObject.py',
@@ -86,7 +86,7 @@ def generate_launch_description():
 
     # Spawn CHIP on conveyor2 (belt2) with delay
     spawn_chip = TimerAction(
-        period=13.0,
+        period=82.0,
         actions=[
             ExecuteProcess(
                 cmd=['ros2', 'run', 'ros2_conveyorbelt', 'SpawnObject.py',

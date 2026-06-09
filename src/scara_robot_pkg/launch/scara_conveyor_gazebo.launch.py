@@ -100,17 +100,20 @@ def generate_launch_description():
 
     # ── Spawn cylinder pedestal under the robot ───────────────────────────────
     pedestal_urdf = os.path.join(scara_pkg, 'urdf', 'pedestal.urdf')
-    spawn_pedestal = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-file', pedestal_urdf,
-            '-entity', 'scara_pedestal',
-            '-x', '-1.0',
-            '-y', '0.0',
-            '-z', '0.0',
-        ],
-        output='screen',
+    spawn_pedestal = TimerAction(
+        period=60.0,
+        actions=[Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            arguments=[
+                '-file', pedestal_urdf,
+                '-entity', 'scara_pedestal',
+                '-x', '-1.0',
+                '-y', '0.0',
+                '-z', '0.0',
+            ],
+            output='screen',
+        )]
     )
 
     # ── Spawn SCARA into Gazebo ────────────────────────────────────────────────
@@ -123,6 +126,7 @@ def generate_launch_description():
         ],
         output='screen',
     )
+    spawn_scara_delayed = TimerAction(period=62.0, actions=[spawn_scara])
 
     # ── ros2_controllers.yaml path ─────────────────────────────────────────────
     ros2_controllers_path = os.path.join(
@@ -212,31 +216,37 @@ def generate_launch_description():
     )
 
     # ── Spawn Bobby pedestal ──────────────────────────────────────────────────
-    spawn_bobby_pedestal = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-file', pedestal_urdf,
-            '-entity', 'bobby_pedestal',
-            '-x', '0.0',
-            '-y', '1.5',
-            '-z', '0.0',
-        ],
-        output='screen',
+    spawn_bobby_pedestal = TimerAction(
+        period=60.0,
+        actions=[Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            arguments=[
+                '-file', pedestal_urdf,
+                '-entity', 'bobby_pedestal',
+                '-x', '0.0',
+                '-y', '1.5',
+                '-z', '0.0',
+            ],
+            output='screen',
+        )]
     )
 
     # ── Spawn Bobby robot (on top of pedestal at z=0.8) ───────────────────────
-    spawn_bobby = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-topic', '/bobby_description',
-            '-entity', 'bobby',
-            '-x', '0.0',
-            '-y', '1.5',
-            '-z', '0.8',
-        ],
-        output='screen',
+    spawn_bobby = TimerAction(
+        period=65.0,
+        actions=[Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            arguments=[
+                '-topic', '/bobby_description',
+                '-entity', 'bobby',
+                '-x', '0.0',
+                '-y', '1.5',
+                '-z', '0.8',
+            ],
+            output='screen',
+        )]
     )
 
     return LaunchDescription([
@@ -248,7 +258,7 @@ def generate_launch_description():
         bobby_state_publisher,
         bobby_world_tf,
         spawn_pedestal,
-        spawn_scara,
+        spawn_scara_delayed,
         spawn_bobby_pedestal,
         spawn_bobby,
         spawn_controllers,

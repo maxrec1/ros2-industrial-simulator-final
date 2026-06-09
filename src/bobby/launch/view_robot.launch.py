@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, TimerAction
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -14,22 +14,17 @@ def generate_launch_description():
         description='Use joint_state_publisher_gui to move joints'
     )
 
-    urdf_file = PathJoinSubstitution([pkg, 'urdf', 'bobby.urdf'])
+    urdf_arg = DeclareLaunchArgument(
+        'urdf',
+        default_value='bobby.urdf',
+        description='URDF file name inside the urdf/ directory'
+    )
+
+    urdf_file = PathJoinSubstitution([pkg, 'urdf', LaunchConfiguration('urdf')])
 
     robot_description = ParameterValue(Command(['cat ', urdf_file]), value_type=str)
 
-    # Publishes /joint_states from sliders
-    jsp_gui = Node(
-        condition=None,
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui',
-        arguments=[],
-        parameters=[{'rate': 30.0}],
-        emulate_tty=True
-    )
-
-    # Publishes TF from the URDF
+    # Publishes TF from the URDF — starts first so /robot_description topic is available
     rsp = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -38,7 +33,22 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Opening RViz with default config
+    # Delayed start: gives robot_state_publisher time to publish /robot_description
+    # so joint_state_publisher_gui can load URDF and handle mimic joints correctly
+    jsp_gui = TimerAction(
+        period=1.5,
+        actions=[Node(
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
+            name='joint_state_publisher_gui',
+            parameters=[{
+                'rate': 30,
+                'use_mimic_tags': True,
+            }],
+            emulate_tty=True
+        )]
+    )
+
     rviz = Node(
         package='rviz2',
         executable='rviz2',
@@ -49,7 +59,8 @@ def generate_launch_description():
 
     return LaunchDescription([
         use_gui,
-        jsp_gui,
+        urdf_arg,
         rsp,
-        rviz
+        jsp_gui,
+        rviz,
     ])
