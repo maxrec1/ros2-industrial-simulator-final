@@ -4,7 +4,7 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, TimerAction, ExecuteProcess
+from launch.actions import IncludeLaunchDescription, TimerAction, ExecuteProcess, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
@@ -12,6 +12,26 @@ from launch_ros.actions import Node
 def generate_launch_description():
     scara_pkg = get_package_share_directory('scara_robot_pkg')
     moveit_pkg = get_package_share_directory('scara_moveit_config')
+
+    # Ensure locally built packages (e.g. linkattacher_msgs) are importable
+    _ws_root = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..')
+    _ws_root = os.path.normpath(_ws_root)
+    _local_pypath = os.path.join(_ws_root, 'install', 'linkattacher_msgs',
+                                 'local', 'lib', 'python3.10', 'dist-packages')
+    _local_libpath = os.path.join(_ws_root, 'install', 'linkattacher_msgs', 'lib')
+    _gazebo_plugin_path = os.path.join(_ws_root, 'install', 'ros2_linkattacher', 'lib')
+    pythonpath_setup = SetEnvironmentVariable(
+        name='PYTHONPATH',
+        value=_local_pypath + ':' + os.environ.get('PYTHONPATH', ''),
+    )
+    ldpath_setup = SetEnvironmentVariable(
+        name='LD_LIBRARY_PATH',
+        value=_local_libpath + ':' + _gazebo_plugin_path + ':' + os.environ.get('LD_LIBRARY_PATH', ''),
+    )
+    gazebo_plugin_path_setup = SetEnvironmentVariable(
+        name='GAZEBO_PLUGIN_PATH',
+        value=_gazebo_plugin_path + ':' + os.environ.get('GAZEBO_PLUGIN_PATH', ''),
+    )
 
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -21,7 +41,7 @@ def generate_launch_description():
     )
 
     moveit_launch = TimerAction(
-        period=70.0,
+        period=6.0,
         actions=[
             IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
@@ -37,7 +57,7 @@ def generate_launch_description():
     )
 
     scene_publisher = TimerAction(
-        period=75.0,
+        period=9.0,
         actions=[
             Node(
                 package='scara_robot_pkg',
@@ -54,14 +74,27 @@ def generate_launch_description():
         ],
     )
 
+    sonar_belt_stopper = TimerAction(
+        period=10.0,
+        actions=[
+            Node(
+                package='scara_robot_pkg',
+                executable='sonar_belt_stopper',
+                output='screen',
+            )
+        ],
+    )
+
     pick_place_config = os.path.join(scara_pkg, 'config', 'pick_place_joints.yaml')
     pick_place_cycle = TimerAction(
-        period=85.0,
+        period=14.0,
         actions=[
             Node(
                 package='scara_robot_pkg',
                 executable='pick_place_cycle',
                 output='screen',
+                # Temporary disable: keep sonar active but hide belt2 ready event from this node.
+                #remappings=[('belt2/object_ready', 'belt2/object_ready_disabled')],
                 parameters=[{'config_path': pick_place_config}],
             )
         ],
@@ -69,7 +102,7 @@ def generate_launch_description():
 
     # Spawn PCB on conveyor1 (belt1) with delay
     spawn_pcb = TimerAction(
-        period=80.0,
+        period=12.0,
         actions=[
             ExecuteProcess(
                 cmd=['ros2', 'run', 'ros2_conveyorbelt', 'SpawnObject.py',
@@ -86,7 +119,7 @@ def generate_launch_description():
 
     # Spawn CHIP on conveyor2 (belt2) with delay
     spawn_chip = TimerAction(
-        period=82.0,
+        period=13.0,
         actions=[
             ExecuteProcess(
                 cmd=['ros2', 'run', 'ros2_conveyorbelt', 'SpawnObject.py',
@@ -102,9 +135,13 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        pythonpath_setup,
+        ldpath_setup,
+        gazebo_plugin_path_setup,
         gazebo_launch,
         moveit_launch,
         scene_publisher,
+        sonar_belt_stopper,
         pick_place_cycle,
         spawn_pcb,
         spawn_chip,

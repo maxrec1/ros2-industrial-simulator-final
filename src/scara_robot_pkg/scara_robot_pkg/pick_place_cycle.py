@@ -12,6 +12,8 @@ from builtin_interfaces.msg import Duration
 from control_msgs.action import FollowJointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
 from conveyorbelt_msgs.srv import ConveyorBeltControl
+from std_msgs.msg import Bool
+from linkattacher_msgs.srv import AttachLink, DetachLink
 
 
 class PickPlaceCycle(Node):
@@ -23,21 +25,33 @@ class PickPlaceCycle(Node):
         self.declare_parameter('belt1_service', '/CONVEYORPOWER')
         self.declare_parameter('belt2_service', '/belt2/CONVEYORPOWER')
         self.declare_parameter('belt_stop_power', 0.0)
+        self.declare_parameter('belt_run_power', 20.0)
 
         self._action_name = self.get_parameter('controller_action').get_parameter_value().string_value
         self._belt1_name = self.get_parameter('belt1_service').get_parameter_value().string_value
         self._belt2_name = self.get_parameter('belt2_service').get_parameter_value().string_value
         self._belt_stop_power = float(self.get_parameter('belt_stop_power').get_parameter_value().double_value)
+        self._belt_run_power = float(self.get_parameter('belt_run_power').get_parameter_value().double_value)
 
         self._traj_client = ActionClient(self, FollowJointTrajectory, self._action_name)
         self._belt1_client = self.create_client(ConveyorBeltControl, self._belt1_name)
         self._belt2_client = self.create_client(ConveyorBeltControl, self._belt2_name)
+        self._attach_client = self.create_client(AttachLink, '/ATTACHLINK')
+        self._detach_client = self.create_client(DetachLink, '/DETACHLINK')
+
+        # Flag set by sonar stopper when belt2 object is in position
+        self._belt2_object_ready: bool = False
+        self.create_subscription(Bool, 'belt2/object_ready', self._on_belt2_ready, 10)
 
         config_path = self.get_parameter('config_path').get_parameter_value().string_value
         if not config_path:
             raise RuntimeError('Parameter config_path is required')
 
         self._config = self._load_config(config_path)
+
+    def _on_belt2_ready(self, msg: Bool) -> None:
+        if msg.data:
+            self._belt2_object_ready = True
 
     def _load_config(self, config_path: str):
         with open(config_path, 'r', encoding='utf-8') as f:
@@ -52,6 +66,8 @@ class PickPlaceCycle(Node):
         for client, name in [
             (self._belt1_client, self._belt1_name),
             (self._belt2_client, self._belt2_name),
+            (self._attach_client, '/ATTACHLINK'),
+            (self._detach_client, '/DETACHLINK'),
         ]:
             if not client.wait_for_service(timeout_sec=10.0):
                 raise RuntimeError(f'Service not available: {name}')
@@ -111,21 +127,65 @@ class PickPlaceCycle(Node):
         if result.error_code != 0:
             raise RuntimeError(f'Stage {stage_name} failed with error code {result.error_code}')
 
+    def _attach_chip(self) -> None:
+        req = AttachLink.Request()
+        req.model1_name = 'scara_robot'
+        req.link1_name = 'Link_4'
+        req.model2_name = 'chip1'
+        req.link2_name = 'base_link_chip'
+        future = self._attach_client.call_async(req)
+        rclpy.spin_until_future_complete(self, future, timeout_sec=5.0)
+        self.get_logger().info('Chip ATTACHED to Link_4')
+
+    def _detach_chip(self) -> None:
+        req = DetachLink.Request()
+        req.model1_name = 'scara_robot'
+        req.link1_name = 'Link_4'
+        req.model2_name = 'chip1'
+        req.link2_name = 'base_link_chip'
+        future = self._detach_client.call_async(req)
+        rclpy.spin_until_future_complete(self, future, timeout_sec=5.0)
+        self.get_logger().info('Chip DETACHED from Link_4')
+
+    def _wait_for_belt2_object(self) -> None:
+        """Spin until sonar_belt_stopper publishes object_ready on belt2."""
+        self.get_logger().info('Waiting for object on belt2 sonar...')
+        self._belt2_object_ready = False
+        while not self._belt2_object_ready:
+            rclpy.spin_once(self, timeout_sec=0.1)
+        self.get_logger().info('Object ready on belt2 — starting pick-place.')
+
     def run_cycle(self) -> None:
         self._wait_for_services()
         self._wait_for_action()
 
-        self.get_logger().info('Stopping both conveyors for deterministic pick-place cycle')
-        self._set_belt_power(self._belt1_client, self._belt_stop_power, 'belt1')
-        self._set_belt_power(self._belt2_client, self._belt_stop_power, 'belt2')
+        cycle = 0
+        while True:
+            cycle += 1
+            self.get_logger().info(f'=== Cycle {cycle}: starting belt2 (belt1 off) ===')
+            # belt1 intentionally left off
+            self._set_belt_power(self._belt2_client, self._belt_run_power, 'belt2')
 
-        # Phase-1 deterministic sequence using precomputed joint targets.
-        # Next iteration can replace this with MoveIt pose-goal planning.
-        for stage_name in ['pre_pick', 'pick', 'lift', 'pre_place', 'place', 'retreat']:
-            self._send_joint_stage(stage_name)
+            # Block until sonar detects object at belt2 exit
+            self._wait_for_belt2_object()
+
+            # Execute pick-place arm sequence
+            self._send_joint_stage('pre_pick')
+            time.sleep(0.2)
+            self._send_joint_stage('pick')
+            time.sleep(0.2)
+            self._attach_chip()                   # grip chip after pick
+            self._send_joint_stage('lift')
+            time.sleep(0.2)
+            self._send_joint_stage('pre_place')
+            time.sleep(0.2)
+            self._send_joint_stage('place')
+            time.sleep(0.2)
+            self._detach_chip()                   # release chip after place
+            self._send_joint_stage('retreat')
             time.sleep(0.2)
 
-        self.get_logger().info('Pick-place cycle complete')
+            self.get_logger().info(f'=== Cycle {cycle} complete ===')
 
 
 def main() -> None:
@@ -143,3 +203,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+

@@ -43,16 +43,35 @@ sudo rosdep init
 rosdep update
 ```
 
-### 4. Install remaining ROS dependencies
+### 4. Clone the required plugins
+
+**IFRA_ConveyorBelt** — Gazebo conveyor belt plugin:
+
+```bash
+cd src
+git clone https://github.com/IFRA-Cranfield/IFRA_ConveyorBelt.git
+cd ..
+```
+
+**IFRA_LinkAttacher** — Gazebo attach/detach plugin used by the pick-and-place cycle to grip objects with the robot end-effector:
+
+```bash
+cd src
+git clone https://github.com/IFRA-Cranfield/IFRA_LinkAttacher.git
+cd ..
+```
+
+### 5. Install remaining ROS dependencies
 
 ```bash
 source /opt/ros/humble/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-### 5. Build
+### 6. Build
 
 ```bash
+source /opt/ros/humble/setup.bash
 colcon build
 source install/setup.bash
 ```
@@ -115,4 +134,9 @@ ros2 service call /belt2/CONVEYORPOWER conveyorbelt_msgs/srv/ConveyorBeltControl
 
 # Stop
 ros2 service call /belt2/CONVEYORPOWER conveyorbelt_msgs/srv/ConveyorBeltControl "{power: 0.0}"
+```
+## Graphify
+```
+cd /home/maxrec/projects/test/ros2-industrial-robot-simulation/graphify-out
+python3 -m http.server 8080
 ```

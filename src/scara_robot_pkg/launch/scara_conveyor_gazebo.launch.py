@@ -100,20 +100,17 @@ def generate_launch_description():
 
     # ── Spawn cylinder pedestal under the robot ───────────────────────────────
     pedestal_urdf = os.path.join(scara_pkg, 'urdf', 'pedestal.urdf')
-    spawn_pedestal = TimerAction(
-        period=60.0,
-        actions=[Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            arguments=[
-                '-file', pedestal_urdf,
-                '-entity', 'scara_pedestal',
-                '-x', '-1.0',
-                '-y', '0.0',
-                '-z', '0.0',
-            ],
-            output='screen',
-        )]
+    spawn_pedestal = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-file', pedestal_urdf,
+            '-entity', 'scara_pedestal',
+            '-x', '-1.0',
+            '-y', '0.0',
+            '-z', '0.0',
+        ],
+        output='screen',
     )
 
     # ── Spawn SCARA into Gazebo ────────────────────────────────────────────────
@@ -126,7 +123,6 @@ def generate_launch_description():
         ],
         output='screen',
     )
-    spawn_scara_delayed = TimerAction(period=62.0, actions=[spawn_scara])
 
     # ── ros2_controllers.yaml path ─────────────────────────────────────────────
     ros2_controllers_path = os.path.join(
@@ -215,38 +211,52 @@ def generate_launch_description():
         output='screen',
     )
 
+    # ── Static TFs for sonar sensor frames ────────────────────────────────────
+    # Belt1: at world origin, sensor at y=+0.6, z=0.791 (5cm above belt), pointing down
+    belt1_sonar_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='belt1_sonar_tf',
+        arguments=['0', '0.6', '0.791', '0', '1.5708', '0', 'world', 'belt1_sonar_link'],
+        output='screen',
+    )
+
+    # Belt2: placed at (-1,-1,0) yaw=-π/2; sensor local (0,+0.30,0.791) maps to
+    # world x=-1+0.30=-0.70, y=-1.0, z=0.791. Combined orientation: yaw=-π/2, pitch=π/2.
+    belt2_sonar_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='belt2_sonar_tf',
+        arguments=['-0.70', '-1.0', '0.791', '-1.5708', '1.5708', '0', 'world', 'belt2_sonar_link'],
+        output='screen',
+    )
+
     # ── Spawn Bobby pedestal ──────────────────────────────────────────────────
-    spawn_bobby_pedestal = TimerAction(
-        period=60.0,
-        actions=[Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            arguments=[
-                '-file', pedestal_urdf,
-                '-entity', 'bobby_pedestal',
-                '-x', '0.0',
-                '-y', '1.5',
-                '-z', '0.0',
-            ],
-            output='screen',
-        )]
+    spawn_bobby_pedestal = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-file', pedestal_urdf,
+            '-entity', 'bobby_pedestal',
+            '-x', '0.0',
+            '-y', '1.5',
+            '-z', '0.0',
+        ],
+        output='screen',
     )
 
     # ── Spawn Bobby robot (on top of pedestal at z=0.8) ───────────────────────
-    spawn_bobby = TimerAction(
-        period=65.0,
-        actions=[Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            arguments=[
-                '-topic', '/bobby_description',
-                '-entity', 'bobby',
-                '-x', '0.0',
-                '-y', '1.5',
-                '-z', '0.8',
-            ],
-            output='screen',
-        )]
+    spawn_bobby = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=[
+            '-topic', '/bobby_description',
+            '-entity', 'bobby',
+            '-x', '0.0',
+            '-y', '1.5',
+            '-z', '0.8',
+        ],
+        output='screen',
     )
 
     return LaunchDescription([
@@ -257,8 +267,10 @@ def generate_launch_description():
         bobby_joint_state_publisher,
         bobby_state_publisher,
         bobby_world_tf,
+        belt1_sonar_tf,
+        belt2_sonar_tf,
         spawn_pedestal,
-        spawn_scara_delayed,
+        spawn_scara,
         spawn_bobby_pedestal,
         spawn_bobby,
         spawn_controllers,

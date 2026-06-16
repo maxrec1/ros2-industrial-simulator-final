@@ -6,16 +6,50 @@ MoveIt planning scene so RViz shows the full workcell and the planner
 can collision-check against it.
 """
 
+import math
+import os
+import struct
+
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, DurabilityPolicy
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy, DurabilityPolicy
 
 from moveit_msgs.msg import PlanningScene, CollisionObject
-from shape_msgs.msg import SolidPrimitive
+from shape_msgs.msg import SolidPrimitive, Mesh, MeshTriangle
 from geometry_msgs.msg import Pose, Point, Quaternion
 from gazebo_msgs.msg import ModelStates
 
-import math
+try:
+    from ament_index_python.packages import get_package_share_directory
+    _HAVE_AMENT_INDEX = True
+except ImportError:
+    _HAVE_AMENT_INDEX = False
+
+
+def _load_binary_stl_as_mesh(stl_path: str, scale: float,
+                              origin_xyz: tuple) -> Mesh:
+    """Parse a binary STL file and return shape_msgs/Mesh with scale and
+    origin-offset pre-applied so the vertices are in the URDF link frame."""
+    ox, oy, oz = origin_xyz
+    mesh = Mesh()
+    with open(stl_path, 'rb') as f:
+        f.read(80)                                   # 80-byte header
+        num_tri = struct.unpack('<I', f.read(4))[0]  # triangle count
+        for i in range(num_tri):
+            f.read(12)                               # face normal (skip)
+            base = len(mesh.vertices)
+            for _ in range(3):
+                x, y, z = struct.unpack('<fff', f.read(12))
+                p = Point()
+                p.x = x * scale + ox
+                p.y = y * scale + oy
+                p.z = z * scale + oz
+                mesh.vertices.append(p)
+            f.read(2)                                # attribute byte count
+            t = MeshTriangle()
+            t.vertex_indices = [base, base + 1, base + 2]
+            mesh.triangles.append(t)
+    return mesh
 
 
 class ScenePublisher(Node):
@@ -42,10 +76,25 @@ class ScenePublisher(Node):
         # ---------- publish static geometry once ----------
         self._publish_static_scene()
 
+        # ---------- pre-load PCB mesh (once at startup) ----------
+        self._pcb_mesh: Mesh | None = self._load_pcb_mesh()
+        if self._pcb_mesh:
+            self.get_logger().info(
+                f'PCB mesh loaded: {len(self._pcb_mesh.triangles)} triangles')
+        else:
+            self.get_logger().warn(
+                'PCB mesh unavailable — will use box approximation')
+
         # ---------- dynamic Gazebo tracking ----------
+        # Gazebo publishes with BEST_EFFORT — subscriber must match
+        _gz_qos = QoSProfile(
+            reliability=ReliabilityPolicy.BEST_EFFORT,
+            history=HistoryPolicy.KEEP_LAST,
+            depth=10,
+        )
         self._model_states_sub = self.create_subscription(
-            ModelStates, '/gazebo/model_states',
-            self._model_states_cb, 10)
+            ModelStates, '/model_states',
+            self._model_states_cb, _gz_qos)
 
         # Rate-limit dynamic updates
         self._last_update_time = self.get_clock().now()
@@ -120,6 +169,21 @@ class ScenePublisher(Node):
         co.primitive_poses = [pose]
         return co
 
+    # -- PCB mesh loader -----------------------------------------------
+    def _load_pcb_mesh(self) -> 'Mesh | None':
+        if not _HAVE_AMENT_INDEX:
+            return None
+        try:
+            share = get_package_share_directory('conveyorbelt_gazebo')
+            stl_path = os.path.join(
+                share, 'meshes', 'pcb', 'base_link_PCB.STL')
+            # scale=5.0, origin from URDF: xyz="-3.0173 -4.3763 -6.4655"
+            return _load_binary_stl_as_mesh(
+                stl_path, 5.0, (-3.0173, -4.3763, -6.4655))
+        except Exception as exc:
+            self.get_logger().warn(f'PCB mesh load error: {exc}')
+            return None
+
     # -- conveyor belt 2: at (-1, -1, 0), rotated 90° about Z ----------
     def _make_conveyor2(self):
         co = CollisionObject()
@@ -162,24 +226,27 @@ class ScenePublisher(Node):
             co = CollisionObject()
             co.header.frame_id = self.planning_frame
             co.id = name
-
-            if name not in self._dynamic_added:
-                co.operation = CollisionObject.ADD
-                self._dynamic_added.add(name)
-            else:
-                co.operation = CollisionObject.MOVE
-
-            # Small box approximation for PCB / chip
-            box = SolidPrimitive()
-            box.type = SolidPrimitive.BOX
-            box.dimensions = [0.05, 0.05, 0.01]
+            co.operation = CollisionObject.ADD  # ADD is idempotent — updates pose if already present
 
             pose = Pose()
             pose.position = gz_pose.position
             pose.orientation = gz_pose.orientation
 
-            co.primitives = [box]
-            co.primitive_poses = [pose]
+            if name == 'pcb1' and self._pcb_mesh is not None:
+                # Use actual STL mesh (scale+offset pre-applied, vertices in link frame)
+                co.meshes = [self._pcb_mesh]
+                co.mesh_poses = [pose]
+            else:
+                # Box approximation for chip1 (and fallback for pcb1)
+                _DIMS = {
+                    'pcb1':  [0.100, 0.060, 0.005],
+                    'chip1': [0.025, 0.025, 0.0045],
+                }
+                box = SolidPrimitive()
+                box.type = SolidPrimitive.BOX
+                box.dimensions = _DIMS.get(name, [0.05, 0.05, 0.01])
+                co.primitives = [box]
+                co.primitive_poses = [pose]
             scene.world.collision_objects.append(co)
             found_any = True
 

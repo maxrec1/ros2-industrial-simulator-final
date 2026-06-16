@@ -11,6 +11,13 @@
     <scene>
       <shadows>0</shadows>
     </scene>
+
+    <!-- Publishes /gazebo/model_states so scene_publisher can track objects -->
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <update_rate>10.0</update_rate>
+    </plugin>
+    <!-- Link attacher: provides /ATTACHLINK and /DETACHLINK services -->
+    <plugin name="gazebo_link_attacher" filename="libgazebo_link_attacher.so"/>
     <!-- Belt 1: original, runs along Y axis at origin -->
     <include>
       <name>conveyor_belt</name>

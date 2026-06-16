@@ -69,6 +69,36 @@
                 </collision>
             </link>
 
+            <link name="belt2_sonar_link">
+                <pose>0 0.30 0.791 0 1.5708 0</pose>
+                <sensor name="sonar_sensor" type="ray">
+                    <always_on>1</always_on>
+                    <visualize>true</visualize>
+                    <update_rate>20</update_rate>
+                    <ray>
+                        <scan>
+                            <horizontal>
+                                <samples>1</samples>
+                                <resolution>1</resolution>
+                                <min_angle>0.0</min_angle>
+                                <max_angle>0.0</max_angle>
+                            </horizontal>
+                        </scan>
+                        <range>
+                            <min>0.02</min>
+                            <max>1.0</max>
+                        </range>
+                    </ray>
+                    <plugin name="belt2_sonar_plugin" filename="libgazebo_ros_ray_sensor.so">
+                        <ros>
+                            <remapping>~/out:=belt2/sonar</remapping>
+                        </ros>
+                        <output_type>sensor_msgs/Range</output_type>
+                        <frame_name>belt2_sonar_link</frame_name>
+                    </plugin>
+                </sensor>
+            </link>
+
         </model>
 
         <model name="conveyorbelt_moving">

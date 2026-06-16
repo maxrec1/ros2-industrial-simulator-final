@@ -25,6 +25,42 @@
         <joint name="Joint_3" value="0"/>
         <joint name="Joint_4" value="0"/>
     </group_state>
+    <group_state name="pre_pick" group="arm">
+        <joint name="Joint_1" value="0.7284724674144405"/>
+        <joint name="Joint_2" value="-1.1742983109061287"/>
+        <joint name="Joint_3" value="-0.1227409210566611"/>
+        <joint name="Joint_4" value="0.3027"/>
+    </group_state>
+    <group_state name="pick" group="arm">
+        <joint name="Joint_1" value="0.7330382858376184"/>
+        <joint name="Joint_2" value="-1.1693705988362009"/>
+        <joint name="Joint_3" value="-0.388"/>
+        <joint name="Joint_4" value="-5.969026041820607"/>
+    </group_state>
+    <group_state name="lift" group="arm">
+        <joint name="Joint_1" value="0.25"/>
+        <joint name="Joint_2" value="-1.60"/>
+        <joint name="Joint_3" value="-0.10"/>
+        <joint name="Joint_4" value="0.0"/>
+    </group_state>
+    <group_state name="pre_place" group="arm">
+        <joint name="Joint_1" value="0.03360537734912761"/>
+        <joint name="Joint_2" value="-0.9136791711105747"/>
+        <joint name="Joint_3" value="-0.07971313454812703"/>
+        <joint name="Joint_4" value="-0.6528"/>
+    </group_state>
+    <group_state name="place" group="arm">
+        <joint name="Joint_1" value="0.030360038537413203"/>
+        <joint name="Joint_2" value="-0.9186182175500379"/>
+        <joint name="Joint_3" value="-0.36"/>
+        <joint name="Joint_4" value="-0.6512092675774661"/>
+    </group_state>
+    <group_state name="retreat" group="arm">
+        <joint name="Joint_1" value="0.60"/>
+        <joint name="Joint_2" value="-1.00"/>
+        <joint name="Joint_3" value="-0.05"/>
+        <joint name="Joint_4" value="0.0"/>
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="eef" parent_link="Link_4" group="arm"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->

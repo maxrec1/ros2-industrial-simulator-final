@@ -19,6 +19,7 @@
   <exec_depend>trajectory_msgs</exec_depend>
   <exec_depend>builtin_interfaces</exec_depend>
   <exec_depend>conveyorbelt_msgs</exec_depend>
+  <exec_depend>linkattacher_msgs</exec_depend>
   <exec_depend>python3-yaml</exec_depend>
 
   <test_depend>ament_copyright</test_depend>
