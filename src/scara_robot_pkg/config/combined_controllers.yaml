@@ -1,0 +1,62 @@
+# Single global controller_manager for the combined SCARA + bobby cell.
+#
+# One gazebo_ros2_control plugin (global namespace) drives BOTH robots, so there
+# is exactly one /controller_manager and no namespace clobbering (see
+# gen_combined_gazebo.py for why two namespaced plugins don't work on
+# gazebo_ros2_control 0.4.10). Controllers are uniquely named across robots.
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    bobby_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    bobby_gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+# SCARA arm
+arm_trajectory_controller:
+  ros__parameters:
+    joints:
+      - Joint_1
+      - Joint_2
+      - Joint_3
+      - Joint_4
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+# bobby arm
+bobby_arm_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+# bobby parallel gripper (finger_right mimics finger_left in the URDF)
+bobby_gripper_controller:
+  ros__parameters:
+    joints:
+      - finger_left_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity

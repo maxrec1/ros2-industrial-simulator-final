@@ -1,0 +1,185 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-06-21-13-41-55-566436-261b2794fe67-57
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gzserver-1]: process started with pid [59]
+[INFO] [robot_state_publisher-2]: process started with pid [61]
+[INFO] [static_transform_publisher-3]: process started with pid [63]
+[INFO] [static_transform_publisher-4]: process started with pid [65]
+[INFO] [spawn_entity.py-5]: process started with pid [67]
+[INFO] [spawn_entity.py-6]: process started with pid [69]
+[INFO] [spawn_entity.py-7]: process started with pid [71]
+[INFO] [move_group-8]: process started with pid [73]
+[static_transform_publisher-4] [WARN] [1782049315.914363565] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-3] [WARN] [1782049315.915085633] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-4] [INFO] [1782049315.929634038] [belt2_sonar_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-4] translation: ('-0.700000', '-1.000000', '0.791000')
+[static_transform_publisher-4] rotation: ('0.500002', '0.500000', '-0.500000', '0.499998')
+[static_transform_publisher-4] from 'world' to 'belt2_sonar_link'
+[static_transform_publisher-3] [INFO] [1782049315.933425475] [belt1_sonar_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-3] translation: ('0.000000', '0.600000', '0.791000')
+[static_transform_publisher-3] rotation: ('0.000000', '0.707108', '0.000000', '0.707105')
+[static_transform_publisher-3] from 'world' to 'belt1_sonar_link'
+[robot_state_publisher-2] [INFO] [1782049315.967094480] [robot_state_publisher]: got segment Link_1
+[robot_state_publisher-2] [INFO] [1782049315.967274926] [robot_state_publisher]: got segment Link_2
+[robot_state_publisher-2] [INFO] [1782049315.967285907] [robot_state_publisher]: got segment Link_3
+[robot_state_publisher-2] [INFO] [1782049315.967292118] [robot_state_publisher]: got segment Link_4
+[robot_state_publisher-2] [INFO] [1782049315.967297498] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-2] [INFO] [1782049315.967303009] [robot_state_publisher]: got segment bobby_TCP
+[robot_state_publisher-2] [INFO] [1782049315.967308038] [robot_state_publisher]: got segment bobby_base_link
+[robot_state_publisher-2] [INFO] [1782049315.967313799] [robot_state_publisher]: got segment bobby_finger_left
+[robot_state_publisher-2] [INFO] [1782049315.967319269] [robot_state_publisher]: got segment bobby_finger_right
+[robot_state_publisher-2] [INFO] [1782049315.967324769] [robot_state_publisher]: got segment bobby_gripper_base
+[robot_state_publisher-2] [INFO] [1782049315.967331111] [robot_state_publisher]: got segment bobby_gripper_flange
+[robot_state_publisher-2] [INFO] [1782049315.967336772] [robot_state_publisher]: got segment bobby_link_1
+[robot_state_publisher-2] [INFO] [1782049315.967342252] [robot_state_publisher]: got segment bobby_link_2
+[robot_state_publisher-2] [INFO] [1782049315.967347171] [robot_state_publisher]: got segment bobby_link_3
+[robot_state_publisher-2] [INFO] [1782049315.967352882] [robot_state_publisher]: got segment bobby_link_4
+[robot_state_publisher-2] [INFO] [1782049315.967358011] [robot_state_publisher]: got segment bobby_link_5
+[robot_state_publisher-2] [INFO] [1782049315.967362800] [robot_state_publisher]: got segment bobby_link_6
+[robot_state_publisher-2] [INFO] [1782049315.967367820] [robot_state_publisher]: got segment world
+[move_group-8] [INFO] [1782049316.007523101] [moveit_rdf_loader.rdf_loader]: Loaded robot model in 0 seconds
+[move_group-8] [INFO] [1782049316.008502990] [moveit_robot_model.robot_model]: Loading robot model 'bobby_v3'...
+[move_group-8] [INFO] [1782049316.008518900] [moveit_robot_model.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[move_group-8] [INFO] [1782049316.077922615] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-8] [INFO] [1782049316.078128950] [moveit.ros_planning_interface.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-8] [INFO] [1782049316.078906000] [moveit_ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-8] [INFO] [1782049316.079879868] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-8] [INFO] [1782049316.079931444] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting planning scene monitor
+[move_group-8] [INFO] [1782049316.080490668] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-8] [INFO] [1782049316.080520995] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-8] [INFO] [1782049316.081064750] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-8] [INFO] [1782049316.081483221] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-8] [WARN] [1782049316.081756381] [moveit.ros.occupancy_map_monitor.middleware_handle]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-8] [ERROR] [1782049316.081774144] [moveit.ros.occupancy_map_monitor.middleware_handle]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-8] [INFO] [1782049316.088544261] [moveit.ros_planning_interface.moveit_cpp]: Loading planning pipeline 'ompl'
+[move_group-8] [INFO] [1782049316.098770969] [moveit.ros_planning.planning_pipeline]: Using planning interface 'OMPL'
+[move_group-8] [INFO] [1782049316.101249275] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.path_tolerance' was not set. Using default value: 0.100000
+[move_group-8] [INFO] [1782049316.101275013] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.resample_dt' was not set. Using default value: 0.100000
+[move_group-8] [INFO] [1782049316.101280824] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.min_angle_change' was not set. Using default value: 0.001000
+[move_group-8] [INFO] [1782049316.101304247] [moveit_ros.fix_workspace_bounds]: Param 'ompl.default_workspace_bounds' was not set. Using default value: 10.000000
+[move_group-8] [INFO] [1782049316.101324044] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_bounds_error' was set to 0.100000
+[move_group-8] [INFO] [1782049316.101330356] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-8] [INFO] [1782049316.101341497] [moveit_ros.fix_start_state_collision]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-8] [INFO] [1782049316.101347268] [moveit_ros.fix_start_state_collision]: Param 'ompl.jiggle_fraction' was set to 0.050000
+[move_group-8] [INFO] [1782049316.101352948] [moveit_ros.fix_start_state_collision]: Param 'ompl.max_sampling_attempts' was not set. Using default value: 100
+[move_group-8] [INFO] [1782049316.101363057] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Add Time Optimal Parameterization'
+[move_group-8] [INFO] [1782049316.101367956] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Resolve constraint frames to robot links'
+[move_group-8] [INFO] [1782049316.101371363] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Workspace Bounds'
+[move_group-8] [INFO] [1782049316.101374699] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Bounds'
+[move_group-8] [INFO] [1782049316.101377634] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State In Collision'
+[move_group-8] [INFO] [1782049316.101380510] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Path Constraints'
+[move_group-8] [INFO] [1782049316.132420658] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for bobby_arm_controller
+[move_group-8] [INFO] [1782049316.134663143] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for bobby_gripper_controller
+[move_group-8] [INFO] [1782049316.134880188] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-8] [INFO] [1782049316.134908732] [moveit.plugins.moveit_simple_controller_manager]: Returned 2 controllers in list
+[move_group-8] [INFO] [1782049316.135698105] [moveit_ros.trajectory_execution_manager]: Trajectory execution is managing controllers
+[move_group-8] [INFO] [1782049316.135730465] [move_group.move_group]: MoveGroup debug mode is ON
+[move_group-8] [INFO] [1782049316.154690465] [move_group.move_group]: 
+[move_group-8] 
+[move_group-8] ********************************************************
+[move_group-8] * MoveGroup using: 
+[move_group-8] *     - ApplyPlanningSceneService
+[move_group-8] *     - ClearOctomapService
+[move_group-8] *     - CartesianPathService
+[move_group-8] *     - ExecuteTrajectoryAction
+[move_group-8] *     - GetPlanningSceneService
+[move_group-8] *     - KinematicsService
+[move_group-8] *     - MoveAction
+[move_group-8] *     - MotionPlanService
+[move_group-8] *     - QueryPlannersService
+[move_group-8] *     - StateValidationService
+[move_group-8] ********************************************************
+[move_group-8] 
+[move_group-8] [INFO] [1782049316.154773260] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[move_group-8] [INFO] [1782049316.154787326] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context initialization complete
+[move_group-8] [96mLoading 'move_group/ApplyPlanningSceneService'...
+[move_group-8] [0m[96mLoading 'move_group/ClearOctomapService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupCartesianPathService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupGetPlanningSceneService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupKinematicsService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupMoveAction'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupPlanService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupQueryPlannersService'...
+[move_group-8] [0m[96mLoading 'move_group/MoveGroupStateValidationService'...
+[move_group-8] [0m[92m
+[move_group-8] You can start planning now!
+[move_group-8] 
+[spawn_entity.py-6] [INFO] [1782049316.304988402] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-6] [INFO] [1782049316.305319691] [spawn_entity]: Loading entity XML from file /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/urdf/pedestal.urdf
+[spawn_entity.py-6] [INFO] [1782049316.305911104] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-6] [INFO] [1782049316.306183252] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-5] [INFO] [1782049316.309475177] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-5] [INFO] [1782049316.309824789] [spawn_entity]: Loading entity XML from file /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/urdf/pedestal.urdf
+[spawn_entity.py-5] [INFO] [1782049316.310292583] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-5] [INFO] [1782049316.310521320] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-7] [INFO] [1782049316.310927818] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-7] [INFO] [1782049316.311243828] [spawn_entity]: Loading entity published on topic robot_description
+[spawn_entity.py-7] [INFO] [1782049316.313844593] [spawn_entity]: Waiting for entity xml on robot_description
+[spawn_entity.py-7] [INFO] [1782049316.324185965] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-7] [INFO] [1782049316.324540878] [spawn_entity]: Waiting for service /spawn_entity
+[gzserver-1] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+[gzserver-1] ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+[gzserver-1] ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+[gzserver-1] AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+[gzserver-1] [INFO] [1782049384.822350184] [belt1_sonar_plugin]: missing <radiation_type>, defaulting to infrared
+[gzserver-1] [INFO] [1782049384.826996747] [belt2_sonar_plugin]: missing <radiation_type>, defaulting to infrared
+[gzserver-1] [INFO] [1782049384.842392144] [gazebo_ros_state]: Publishing states of gazebo models at [/model_states]
+[gzserver-1] [INFO] [1782049384.842844328] [gazebo_ros_state]: Publishing states of gazebo links at [/link_states]
+[gzserver-1] [INFO] [1782049384.858544785] [ros2_conveyorbelt_plugin]: GAZEBO ConveyorBelt plugin loaded successfully.
+[gzserver-1] [INFO] [1782049384.865859248] [belt2.ros2_conveyorbelt_plugin]: GAZEBO ConveyorBelt plugin loaded successfully.
+[spawn_entity.py-6] [INFO] [1782049384.905260254] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-5] [INFO] [1782049384.905946095] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-7] [INFO] [1782049384.920237080] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-6] [INFO] [1782049384.944912810] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [bobby_pedestal]
+[INFO] [spawn_entity.py-6]: process has finished cleanly [pid 69]
+[spawn_entity.py-5] [INFO] [1782049385.163418855] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [scara_pedestal]
+[INFO] [spawn_entity.py-5]: process has finished cleanly [pid 67]
+[spawn_entity.py-7] [INFO] [1782049385.395694432] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [combined_cell]
+[gzserver-1] [INFO] [1782049385.406721265] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[ERROR] [gzserver-1]: process has died [pid 59, exit code -11, cmd 'gzserver /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/worlds/two_conveyors.world -slibgazebo_ros_init.so -slibgazebo_ros_factory.so -slibgazebo_ros_force_system.so'].
+[INFO] [spawn_entity.py-7]: process has finished cleanly [pid 71]
+[INFO] [spawner-9]: process started with pid [529]
+[INFO] [spawner-10]: process started with pid [531]
+[INFO] [spawner-11]: process started with pid [533]
+[INFO] [spawner-12]: process started with pid [535]
+[spawner-11] [INFO] [1782049385.773427280] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [INFO] [1782049385.790233280] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-10] [INFO] [1782049385.794476831] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-9] [INFO] [1782049385.808717744] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [WARN] [1782049395.788208168] [spawner_bobby_arm_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-11] [INFO] [1782049395.788641577] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [WARN] [1782049395.804258969] [spawner_bobby_gripper_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-12] [INFO] [1782049395.804554751] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-10] [WARN] [1782049395.808195928] [spawner_arm_trajectory_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-10] [INFO] [1782049395.808535051] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-9] [WARN] [1782049395.822547497] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-9] [INFO] [1782049395.822833060] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [WARN] [1782049405.802250085] [spawner_bobby_arm_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-11] [INFO] [1782049405.802543472] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [WARN] [1782049405.818248938] [spawner_bobby_gripper_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-12] [INFO] [1782049405.818544610] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-10] [WARN] [1782049405.821870859] [spawner_arm_trajectory_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-10] [INFO] [1782049405.822167202] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-9] [WARN] [1782049405.836514573] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-9] [INFO] [1782049405.836889513] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [WARN] [1782049415.816613234] [spawner_bobby_arm_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-11] [INFO] [1782049415.816928984] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [WARN] [1782049415.832353115] [spawner_bobby_gripper_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-12] [INFO] [1782049415.832714850] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-10] [WARN] [1782049415.835502033] [spawner_arm_trajectory_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-10] [INFO] [1782049415.835844001] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-9] [WARN] [1782049415.850182275] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-9] [INFO] [1782049415.850468109] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [WARN] [1782049425.832220242] [spawner_bobby_arm_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-11] [INFO] [1782049425.832627903] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [WARN] [1782049425.846278053] [spawner_bobby_gripper_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-12] [INFO] [1782049425.846681506] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-10] [WARN] [1782049425.849192814] [spawner_arm_trajectory_controller]: Could not contact service /controller_manager/list_controllers
+[spawner-10] [INFO] [1782049425.849474169] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-9] [WARN] [1782049425.864235142] [spawner_joint_state_broadcaster]: Could not contact service /controller_manager/list_controllers
+[spawner-9] [INFO] [1782049425.864509555] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...

@@ -1,0 +1,18 @@
+Starting >>> conveyorbelt_msgs
+Starting >>> bobby
+Starting >>> conveyorbelt_gazebo
+Finished <<< conveyorbelt_gazebo [0.10s]
+Finished <<< bobby [0.12s]
+Starting >>> bobby_moveit_config
+Starting >>> bobby_moveit_config_gazebo
+Finished <<< bobby_moveit_config_gazebo [0.09s]
+Finished <<< bobby_moveit_config [0.10s]
+Finished <<< conveyorbelt_msgs [0.33s]
+Starting >>> scara_robot_pkg
+Starting >>> ros2_conveyorbelt
+Finished <<< ros2_conveyorbelt [0.28s]
+Finished <<< scara_robot_pkg [0.68s]
+Starting >>> scara_moveit_config
+Finished <<< scara_moveit_config [0.07s]
+
+Summary: 8 packages finished [1.22s]

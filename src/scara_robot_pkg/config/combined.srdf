@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="combined_cell">
+    <group name="scara_arm">
+        <chain base_link="base_link" tip_link="Link_4"/>
+    </group>
+    <group name="bobby_arm">
+        <chain base_link="bobby_base_link" tip_link="bobby_link_6"/>
+    </group>
+    <group name="bobby_gripper">
+        <joint name="finger_left_joint"/>
+    </group>
+    <group name="both_arms">
+        <group name="scara_arm"/>
+        <group name="bobby_arm"/>
+    </group>
+
+    <group_state name="scara_home" group="scara_arm">
+        <joint name="Joint_1" value="0.6849"/>
+        <joint name="Joint_2" value="-2.5299"/>
+        <joint name="Joint_3" value="0"/>
+        <joint name="Joint_4" value="0"/>
+    </group_state>
+    <group_state name="scara_zero" group="scara_arm">
+        <joint name="Joint_1" value="0"/>
+        <joint name="Joint_2" value="0"/>
+        <joint name="Joint_3" value="0"/>
+        <joint name="Joint_4" value="0"/>
+    </group_state>
+    <group_state name="bobby_home" group="bobby_arm">
+        <joint name="joint_1" value="0"/>
+        <joint name="joint_2" value="-0.75"/>
+        <joint name="joint_3" value="1.25"/>
+        <joint name="joint_4" value="0"/>
+        <joint name="joint_5" value="-0.5"/>
+        <joint name="joint_6" value="0"/>
+    </group_state>
+    <group_state name="bobby_open" group="bobby_gripper">
+        <joint name="finger_left_joint" value="0.04"/>
+    </group_state>
+    <group_state name="bobby_close" group="bobby_gripper">
+        <joint name="finger_left_joint" value="0"/>
+    </group_state>
+
+    <end_effector name="scara_eef" parent_link="Link_4" group="scara_arm"/>
+    <end_effector name="bobby_eef" parent_link="bobby_link_6" group="bobby_gripper" parent_group="bobby_arm"/>
+
+    <disable_collisions link1="Link_1" link2="Link_2" reason="Adjacent"/>
+    <disable_collisions link1="Link_1" link2="Link_3" reason="Never"/>
+    <disable_collisions link1="Link_1" link2="Link_4" reason="Never"/>
+    <disable_collisions link1="Link_1" link2="base_link" reason="Adjacent"/>
+    <disable_collisions link1="Link_2" link2="Link_3" reason="Adjacent"/>
+    <disable_collisions link1="Link_2" link2="Link_4" reason="Never"/>
+    <disable_collisions link1="Link_2" link2="base_link" reason="Never"/>
+    <disable_collisions link1="Link_3" link2="Link_4" reason="Adjacent"/>
+    <disable_collisions link1="Link_3" link2="base_link" reason="Never"/>
+    <disable_collisions link1="Link_4" link2="base_link" reason="Never"/>
+
+    <disable_collisions link1="bobby_base_link" link2="bobby_finger_left" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_finger_right" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_gripper_base" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_gripper_flange" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_1" reason="Adjacent"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_2" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_base_link" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_finger_right" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_gripper_base" reason="Adjacent"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_gripper_flange" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_link_1" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_finger_left" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_gripper_base" reason="Adjacent"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_gripper_flange" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_link_1" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_finger_right" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_gripper_flange" reason="Adjacent"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_link_1" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_base" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_1" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_2" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_gripper_flange" link2="bobby_link_6" reason="Adjacent"/>
+    <disable_collisions link1="bobby_link_1" link2="bobby_link_2" reason="Adjacent"/>
+    <disable_collisions link1="bobby_link_1" link2="bobby_link_3" reason="Never"/>
+    <disable_collisions link1="bobby_link_1" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_link_1" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_link_1" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_link_2" link2="bobby_link_3" reason="Adjacent"/>
+    <disable_collisions link1="bobby_link_2" link2="bobby_link_4" reason="Never"/>
+    <disable_collisions link1="bobby_link_2" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_link_2" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_link_3" link2="bobby_link_4" reason="Adjacent"/>
+    <disable_collisions link1="bobby_link_3" link2="bobby_link_5" reason="Never"/>
+    <disable_collisions link1="bobby_link_3" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_link_4" link2="bobby_link_5" reason="Adjacent"/>
+    <disable_collisions link1="bobby_link_4" link2="bobby_link_6" reason="Never"/>
+    <disable_collisions link1="bobby_link_5" link2="bobby_link_6" reason="Adjacent"/>
+</robot>

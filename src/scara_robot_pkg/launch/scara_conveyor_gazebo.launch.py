@@ -1,14 +1,20 @@
 #!/usr/bin/python3
 # scara_conveyor_gazebo.launch.py
-# Spawns SCARA robot + conveyor belt together in Gazebo with full ros2_control
+# Combined cell: SCARA + bobby (movable, MoveIt-enabled) + conveyors in Gazebo.
+#
+# Both robots live in ONE robot description (combined_gazebo.urdf, produced by
+# scripts/gen_combined_gazebo.py) driven by ONE global gazebo_ros2_control
+# plugin / controller_manager. This is deliberate: gazebo_ros2_control 0.4.10
+# writes a plugin's <ros><namespace> into the PROCESS-GLOBAL rcl arguments, so
+# two namespaced plugins in one gzserver clobber each other and scatter their
+# controllers across namespaces. A single global controller_manager with
+# uniquely named controllers avoids the bug.
 
 import os
-import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
-    ExecuteProcess,
     IncludeLaunchDescription,
     RegisterEventHandler,
     SetEnvironmentVariable,
@@ -19,6 +25,7 @@ from launch.substitutions import LaunchConfiguration
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
+from moveit_configs_utils import MoveItConfigsBuilder
 
 
 def generate_launch_description():
@@ -26,193 +33,101 @@ def generate_launch_description():
     launch_rviz_arg = DeclareLaunchArgument(
         'launch_rviz',
         default_value='False',
-        description='Launch RViz with the Gazebo stack',
+        description='Launch bobby MoveIt RViz with the Gazebo stack',
     )
     launch_rviz = LaunchConfiguration('launch_rviz')
 
+    gui_arg = DeclareLaunchArgument(
+        'gui',
+        default_value='True',
+        description='Start the Gazebo client GUI (set False for headless runs)',
+    )
+    gui = LaunchConfiguration('gui')
+
     # ── Package paths ──────────────────────────────────────────────────────────
-    scara_pkg   = get_package_share_directory('scara_robot_pkg')
-    belt_pkg    = get_package_share_directory('conveyorbelt_gazebo')
+    scara_pkg = get_package_share_directory('scara_robot_pkg')
     bobby_pkg = get_package_share_directory('bobby')
+    bobby_moveit_share = get_package_share_directory('bobby_moveit_config_gazebo')
 
-    # ── Process Bobby URDF → replace package:// URIs with file:// paths ───────
-    bobby_urdf_path = os.path.join(bobby_pkg, 'urdf', 'bobby.urdf')
-    with open(bobby_urdf_path, 'r', encoding='utf-8') as f:
-        bobby_description_raw = f.read()
-    # Strip XML declaration — lxml rejects Unicode strings with encoding declarations
-    if bobby_description_raw.startswith('<?xml'):
-        bobby_description_raw = bobby_description_raw[bobby_description_raw.index('?>') + 2:].lstrip()
-    bobby_description_raw = bobby_description_raw.replace(
-        'package://bobby/', f'file://{bobby_pkg}/'
+    # Locally built link-attacher packages are not always on Gazebo's plugin path
+    # when this launch is started directly.
+    ws_root = os.path.normpath(os.path.join(scara_pkg, '..', '..', '..', '..'))
+    linkattacher_pythonpath = SetEnvironmentVariable(
+        name='PYTHONPATH',
+        value=os.path.join(ws_root, 'install', 'linkattacher_msgs', 'local', 'lib',
+                           'python3.10', 'dist-packages') + ':' + os.environ.get('PYTHONPATH', ''),
     )
-    # Rename Bobby links with bobby_ prefix to avoid TF conflicts with SCARA's base_link etc.
-    for link in ['base_link', 'link_1', 'link_2', 'link_3', 'link_4',
-                 'link_5', 'link_6', 'link_7', 'link_8', 'TCP']:
-        bobby_description_raw = bobby_description_raw.replace(
-            f'name="{link}"', f'name="bobby_{link}"'
-        )
-        bobby_description_raw = bobby_description_raw.replace(
-            f'link="{link}"', f'link="bobby_{link}"'
-        )
-    # Make Bobby static in Gazebo so it doesn't fall under gravity
-    bobby_description_raw = bobby_description_raw.replace(
-        '</robot>',
-        '  <gazebo><static>true</static></gazebo>\n</robot>'
+    linkattacher_ldpath = SetEnvironmentVariable(
+        name='LD_LIBRARY_PATH',
+        value=os.path.join(ws_root, 'install', 'linkattacher_msgs', 'lib') + ':' +
+              os.path.join(ws_root, 'install', 'ros2_linkattacher', 'lib') + ':' +
+              os.environ.get('LD_LIBRARY_PATH', ''),
     )
-    
+    linkattacher_plugin_path = SetEnvironmentVariable(
+        name='GAZEBO_PLUGIN_PATH',
+        value=os.path.join(ws_root, 'install', 'ros2_linkattacher', 'lib') + ':' +
+              os.environ.get('GAZEBO_PLUGIN_PATH', ''),
+    )
 
-    # ── Process SCARA xacro → robot_description ───────────────────────────────
-    scara_xacro_file = os.path.join(scara_pkg, 'urdf', 'scara_gazebo.urdf.xacro')
-    robot_description_raw = xacro.process_file(scara_xacro_file).toxml()
-    # Replace package:// URIs with absolute file:// paths so Gazebo can find the meshes
+    # ── Combined robot_description (SCARA + bobby in one model) ────────────────
+    combined_urdf = os.path.join(scara_pkg, 'urdf', 'combined_gazebo.urdf')
+    combined_controllers_yaml = os.path.join(scara_pkg, 'config', 'combined_controllers.yaml')
+    with open(combined_urdf, 'r', encoding='utf-8') as f:
+        robot_description_raw = f.read()
+    if robot_description_raw.startswith('<?xml'):
+        robot_description_raw = robot_description_raw[robot_description_raw.index('?>') + 2:].lstrip()
+    # Gazebo needs absolute file:// mesh URIs; both packages contribute meshes.
     robot_description_raw = robot_description_raw.replace(
-        'package://scara_robot_pkg/', f'file://{scara_pkg}/'
-    )
+        'package://scara_robot_pkg/', f'file://{scara_pkg}/')
+    robot_description_raw = robot_description_raw.replace(
+        'package://bobby/', f'file://{bobby_pkg}/')
+    # Point the single gazebo plugin at the combined controllers.yaml.
+    robot_description_raw = robot_description_raw.replace(
+        '__COMBINED_CONTROLLERS_YAML__', combined_controllers_yaml)
     robot_description = {'robot_description': robot_description_raw}
 
-    # ── Extend GAZEBO_MODEL_PATH so Gazebo can find conveyor_belt_2 model ──────
+    # ── MoveIt config for the combined cell ──────────────────────────────────
+    # One move_group loads both robots as a single kinematic model. The SRDF
+    # defines scara_arm, bobby_arm, bobby_gripper, and both_arms; the controller
+    # config keeps execution split across the two arm trajectory controllers.
+    combined_srdf = os.path.join(scara_pkg, 'config', 'combined.srdf')
+    combined_moveit = (
+        MoveItConfigsBuilder('combined_cell', package_name='scara_robot_pkg')
+        .robot_description(file_path=combined_urdf)
+        .robot_description_semantic(file_path=combined_srdf)
+        .robot_description_kinematics(file_path=os.path.join(scara_pkg, 'config', 'kinematics.yaml'))
+        .joint_limits(file_path=os.path.join(scara_pkg, 'config', 'joint_limits.yaml'))
+        .trajectory_execution(file_path=os.path.join(scara_pkg, 'config', 'moveit_controllers.yaml'))
+        .planning_pipelines(pipelines=['ompl'])
+        .to_moveit_configs()
+    )
+
+    # ── Gazebo with the two-conveyor world ────────────────────────────────────
     belt2_models_path = os.path.join(scara_pkg, 'models')
     belt1_models_path = os.path.join(
-        get_package_share_directory('conveyorbelt_gazebo'), 'models'
-    )
+        get_package_share_directory('conveyorbelt_gazebo'), 'models')
     gazebo_model_path = SetEnvironmentVariable(
         name='GAZEBO_MODEL_PATH',
         value=belt2_models_path + ':' + belt1_models_path + ':' +
               os.environ.get('GAZEBO_MODEL_PATH', ''),
     )
-
-    # ── Gazebo with two-conveyor world ────────────────────────────────────────
     world_file = os.path.join(scara_pkg, 'worlds', 'two_conveyors.world')
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
         ),
-        launch_arguments={'world': world_file}.items(),
+        launch_arguments={'world': world_file, 'gui': gui}.items(),
     )
 
-    # ── Robot State Publisher ──────────────────────────────────────────────────
+    # ── Robot State Publisher (global, one for the whole cell) ────────────────
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[robot_description],
-    )
-
-    # ── Spawn cylinder pedestal under the robot ───────────────────────────────
-    pedestal_urdf = os.path.join(scara_pkg, 'urdf', 'pedestal.urdf')
-    spawn_pedestal = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-file', pedestal_urdf,
-            '-entity', 'scara_pedestal',
-            '-x', '-1.0',
-            '-y', '0.0',
-            '-z', '0.0',
-        ],
-        output='screen',
-    )
-
-    # ── Spawn SCARA into Gazebo ────────────────────────────────────────────────
-    spawn_scara = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-topic', 'robot_description',
-            '-entity', 'scara_robot',
-        ],
-        output='screen',
-    )
-
-    # ── ros2_controllers.yaml path ─────────────────────────────────────────────
-    ros2_controllers_path = os.path.join(
-        get_package_share_directory('scara_moveit_config'),
-        'config',
-        'ros2_controllers.yaml',
-    )
-
-    # ── Spawn controllers after SCARA is loaded ────────────────────────────────
-    joint_state_broadcaster_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
-    )
-
-    arm_controller_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['arm_trajectory_controller', '-c', '/controller_manager'],
-    )
-
-    # ── RViz2 for visualization ───────────────────────────────────────────────
-    rviz_config = os.path.join(
-        get_package_share_directory('scara_moveit_config'), 'config', 'moveit.rviz'
-    )
-    rviz_node = TimerAction(
-        period=5.0,
-        actions=[
-            Node(
-                package='rviz2',
-                executable='rviz2',
-                name='rviz2',
-                arguments=['-d', rviz_config],
-                parameters=[
-                    {'robot_description': robot_description_raw},
-                ],
-                output='log',
-            )
-        ],
-        condition=IfCondition(launch_rviz),
-    )
-
-    # Start controllers only after SCARA entity is spawned
-    spawn_controllers = RegisterEventHandler(
-        event_handler=OnProcessExit(
-            target_action=spawn_scara,
-            on_exit=[
-                joint_state_broadcaster_spawner,
-                arm_controller_spawner,
-            ],
-        )
-    )
-
-    # ── Bobby Joint State Publisher (zero positions for all Bobby joints) ─────
-    bobby_joint_state_publisher = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
-        name='bobby_joint_state_publisher',
-        parameters=[{'robot_description': bobby_description_raw}],
-        remappings=[
-            ('/robot_description', '/bobby_description'),
-            ('/joint_states', '/bobby_joint_states'),
-        ],
-        output='screen',
-    )
-
-    # ── Bobby Robot State Publisher (on separate topic) ──────────────────────
-    bobby_state_publisher = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        name='bobby_state_publisher',
-        parameters=[{'robot_description': bobby_description_raw}],
-        remappings=[
-            ('/robot_description', '/bobby_description'),
-            ('/joint_states', '/bobby_joint_states'),
-        ],
-        output='screen',
-    )
-
-    # ── Static TF: world → bobby_base_link (places Bobby in RViz at pedestal top) ──
-    bobby_world_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='bobby_world_tf',
-        arguments=['0', '1.5', '0.8', '0', '0', '0', 'world', 'bobby_base_link'],
-        output='screen',
+        parameters=[robot_description, {'use_sim_time': True}],
     )
 
     # ── Static TFs for sonar sensor frames ────────────────────────────────────
-    # Belt1: at world origin, sensor at y=+0.6, z=0.791 (5cm above belt), pointing down
     belt1_sonar_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -220,9 +135,6 @@ def generate_launch_description():
         arguments=['0', '0.6', '0.791', '0', '1.5708', '0', 'world', 'belt1_sonar_link'],
         output='screen',
     )
-
-    # Belt2: placed at (-1,-1,0) yaw=-π/2; sensor local (0,+0.30,0.791) maps to
-    # world x=-1+0.30=-0.70, y=-1.0, z=0.791. Combined orientation: yaw=-π/2, pitch=π/2.
     belt2_sonar_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -231,48 +143,140 @@ def generate_launch_description():
         output='screen',
     )
 
-    # ── Spawn Bobby pedestal ──────────────────────────────────────────────────
+    # ── Pedestals under each robot ────────────────────────────────────────────
+    pedestal_urdf = os.path.join(scara_pkg, 'urdf', 'pedestal.urdf')
+    # -timeout 120: gzserver can take well over the spawn_entity default of 30 s to
+    # bring up GazeboRosFactory (/spawn_entity) on slow/software-rendered machines;
+    # a short timeout makes the spawns fail and the controller_manager never start.
+    spawn_scara_pedestal = Node(
+        package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-file', pedestal_urdf, '-entity', 'scara_pedestal',
+                   '-x', '-1.0', '-y', '0.0', '-z', '0.0', '-timeout', '120.0'],
+        output='screen',
+    )
     spawn_bobby_pedestal = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-file', pedestal_urdf,
-            '-entity', 'bobby_pedestal',
-            '-x', '0.0',
-            '-y', '1.5',
-            '-z', '0.0',
-        ],
+        package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-file', pedestal_urdf, '-entity', 'bobby_pedestal',
+                   '-x', '0.0', '-y', '1.0', '-z', '0.0', '-timeout', '120.0'],
+        output='screen',
+    )
+    drop_box_urdf = os.path.join(scara_pkg, 'urdf', 'drop_box.urdf')
+    spawn_drop_box = Node(
+        package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-file', drop_box_urdf, '-entity', 'drop_box',
+                   '-x', '0.0', '-y', '1.45', '-z', '0.8', '-timeout', '120.0'],
         output='screen',
     )
 
-    # ── Spawn Bobby robot (on top of pedestal at z=0.8) ───────────────────────
-    spawn_bobby = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=[
-            '-topic', '/bobby_description',
-            '-entity', 'bobby',
-            '-x', '0.0',
-            '-y', '1.5',
-            '-z', '0.8',
-        ],
+    # ── Spawn the combined robot model. Each robot is anchored by a fixed
+    #    world joint in the URDF, so spawn at the origin. ──────────────────────
+    spawn_combined = Node(
+        package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-topic', 'robot_description', '-entity', 'combined_cell',
+                   '-timeout', '120.0'],
         output='screen',
+    )
+
+    # ── Controllers (all on the single global /controller_manager) ────────────
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager', executable='spawner',
+        arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
+    )
+    scara_arm_spawner = Node(
+        package='controller_manager', executable='spawner',
+        arguments=['arm_trajectory_controller', '-c', '/controller_manager'],
+    )
+    bobby_arm_spawner = Node(
+        package='controller_manager', executable='spawner',
+        arguments=['bobby_arm_controller', '-c', '/controller_manager'],
+    )
+    bobby_gripper_spawner = Node(
+        package='controller_manager', executable='spawner',
+        arguments=['bobby_gripper_controller', '-c', '/controller_manager'],
+    )
+    spawn_controllers = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=spawn_combined,
+            on_exit=[
+                joint_state_broadcaster_spawner,
+                scara_arm_spawner,
+                bobby_arm_spawner,
+                bobby_gripper_spawner,
+            ],
+        )
+    )
+
+    # ── Combined move_group (MoveIt, global namespace) ────────────────────────
+    combined_move_group = Node(
+        package='moveit_ros_move_group',
+        executable='move_group',
+        output='screen',
+        parameters=[combined_moveit.to_dict(), {'use_sim_time': True}],
+    )
+
+    # ── MoveIt planning scene: conveyors/pedestals as CollisionObjects ────────
+    scene_publisher = TimerAction(
+        period=9.0,
+        actions=[Node(
+            package='scara_robot_pkg',
+            executable='scene_publisher',
+            output='screen',
+            parameters=[{
+                'planning_frame': 'world',
+                'dynamic_model_names': ['pcb1', 'chip1'],
+                'dynamic_update_hz': 5.0,
+            }],
+        )],
+    )
+
+    sonar_belt_stopper = TimerAction(
+        period=9.0,
+        actions=[Node(
+            package='scara_robot_pkg',
+            executable='sonar_belt_stopper',
+            output='screen',
+        )],
+    )
+
+    # ── RViz with MotionPlanning (only with launch_rviz:=True) ────────────────
+    combined_rviz = TimerAction(
+        period=8.0,
+        actions=[Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2_combined_cell',
+            arguments=['-d', os.path.join(bobby_moveit_share, 'config', 'moveit.rviz')],
+            parameters=[
+                combined_moveit.robot_description,
+                combined_moveit.robot_description_semantic,
+                combined_moveit.robot_description_kinematics,
+                combined_moveit.planning_pipelines,
+                combined_moveit.joint_limits,
+                {'use_sim_time': True},
+            ],
+            output='log',
+        )],
+        condition=IfCondition(launch_rviz),
     )
 
     return LaunchDescription([
         launch_rviz_arg,
+        gui_arg,
+        linkattacher_pythonpath,
+        linkattacher_ldpath,
+        linkattacher_plugin_path,
         gazebo_model_path,
         gazebo,
         robot_state_publisher,
-        bobby_joint_state_publisher,
-        bobby_state_publisher,
-        bobby_world_tf,
         belt1_sonar_tf,
         belt2_sonar_tf,
-        spawn_pedestal,
-        spawn_scara,
+        spawn_scara_pedestal,
         spawn_bobby_pedestal,
-        spawn_bobby,
+        spawn_drop_box,
+        spawn_combined,
         spawn_controllers,
-        rviz_node,
+        combined_move_group,
+        scene_publisher,
+        sonar_belt_stopper,
+        combined_rviz,
     ])

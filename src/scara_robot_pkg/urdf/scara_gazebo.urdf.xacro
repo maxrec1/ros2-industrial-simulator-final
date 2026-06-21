@@ -8,7 +8,9 @@
     <xacro:include filename="$(find scara_robot_pkg)/urdf/scara_ros2_control_gazebo.xacro"/>
     <xacro:scara_ros2_control_gazebo name="ScaraGazeboSystem"/>
 
-    <!-- Gazebo ros2_control plugin -->
+    <!-- Gazebo ros2_control plugin (standalone SCARA only). The combined cell
+         uses combined_gazebo.urdf + a single global controller_manager instead;
+         see scara_conveyor_gazebo.launch.py and gen_combined_gazebo.py. -->
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
             <parameters>$(find scara_moveit_config)/config/ros2_controllers.yaml</parameters>

@@ -115,9 +115,11 @@ class ScenePublisher(Node):
         scene.is_diff = True
 
         scene.world.collision_objects.extend([
-            self._make_pedestal(),
+            self._make_pedestal('scara_pedestal_collision', -1.0, 0.0),
+            self._make_pedestal('bobby_pedestal_collision', 0.0, 1.0),
             self._make_conveyor1(),
             self._make_conveyor2(),
+            self._make_drop_box(),
         ])
 
         self._scene_pub.publish(scene)
@@ -125,10 +127,10 @@ class ScenePublisher(Node):
                                '(pedestal + 2 conveyors)')
 
     # -- pedestal: cylinder + mounting block ----------------------------
-    def _make_pedestal(self):
+    def _make_pedestal(self, object_id: str, x: float, y: float):
         co = CollisionObject()
         co.header.frame_id = self.planning_frame
-        co.id = 'pedestal'
+        co.id = object_id
         co.operation = CollisionObject.ADD
 
         # Cylinder shaft  r=0.12  h=0.7  centred at z=0.35
@@ -136,7 +138,7 @@ class ScenePublisher(Node):
         cyl.type = SolidPrimitive.CYLINDER
         cyl.dimensions = [0.7, 0.12]          # [height, radius]
         cyl_pose = Pose()
-        cyl_pose.position = Point(x=-1.0, y=0.0, z=0.35)
+        cyl_pose.position = Point(x=x, y=y, z=0.35)
         cyl_pose.orientation = Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)
 
         # Mounting block  0.25 x 0.25 x 0.1  centred at z=0.75
@@ -144,7 +146,7 @@ class ScenePublisher(Node):
         box.type = SolidPrimitive.BOX
         box.dimensions = [0.25, 0.25, 0.1]    # [x, y, z]
         box_pose = Pose()
-        box_pose.position = Point(x=-1.0, y=0.0, z=0.75)
+        box_pose.position = Point(x=x, y=y, z=0.75)
         box_pose.orientation = Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)
 
         co.primitives = [cyl, box]
@@ -201,6 +203,34 @@ class ScenePublisher(Node):
 
         co.primitives = [box]
         co.primitive_poses = [pose]
+        return co
+
+    def _make_drop_box(self):
+        co = CollisionObject()
+        co.header.frame_id = self.planning_frame
+        co.id = 'drop_box_collision'
+        co.operation = CollisionObject.ADD
+
+        parts = []
+        poses = []
+        for dims, xyz in [
+            ([0.36, 0.36, 0.02], [0.0, 1.45, 0.81]),
+            ([0.02, 0.36, 0.20], [0.18, 1.45, 0.91]),
+            ([0.02, 0.36, 0.20], [-0.18, 1.45, 0.91]),
+            ([0.36, 0.02, 0.20], [0.0, 1.63, 0.91]),
+            ([0.36, 0.02, 0.20], [0.0, 1.27, 0.91]),
+        ]:
+            box = SolidPrimitive()
+            box.type = SolidPrimitive.BOX
+            box.dimensions = dims
+            pose = Pose()
+            pose.position = Point(x=xyz[0], y=xyz[1], z=xyz[2])
+            pose.orientation = Quaternion(x=0.0, y=0.0, z=0.0, w=1.0)
+            parts.append(box)
+            poses.append(pose)
+
+        co.primitives = parts
+        co.primitive_poses = poses
         return co
 
     # ------------------------------------------------------------------ #

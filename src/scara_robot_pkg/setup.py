@@ -32,6 +32,7 @@ setup(
             'scene_publisher = scara_robot_pkg.scene_publisher:main',
             'move_joints = scara_robot_pkg.move_joints:main',
             'sonar_belt_stopper = scara_robot_pkg.sonar_belt_stopper:main',
+            'dual_cell_cycle = scara_robot_pkg.dual_cell_cycle:main',
         ],
     },
 )

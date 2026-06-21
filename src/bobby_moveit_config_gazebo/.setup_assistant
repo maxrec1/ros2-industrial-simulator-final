@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: bobby
+    relative_path: urdf/bobby.urdf
+  srdf:
+    relative_path: config/bobby_v3.srdf
+  package_settings:
+    author_name: VictorSwekis
+    author_email: victor-swekis@gmx.de
+    generated_timestamp: 1781601271
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
