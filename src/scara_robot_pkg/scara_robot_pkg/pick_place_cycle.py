@@ -30,6 +30,8 @@ class PickPlaceCycle(Node):
         self.declare_parameter('tool_link_name', 'Link_4')
         self.declare_parameter('chip_model_name', 'chip1')
         self.declare_parameter('chip_link_name', 'base_link_chip')
+        self.declare_parameter('pcb_model_name', 'pcb1')
+        self.declare_parameter('pcb_link_name', 'base_link_pcb')
 
         self._action_name = self.get_parameter('controller_action').get_parameter_value().string_value
         self._belt1_name = self.get_parameter('belt1_service').get_parameter_value().string_value
@@ -40,6 +42,8 @@ class PickPlaceCycle(Node):
         self._tool_link_name = self.get_parameter('tool_link_name').get_parameter_value().string_value
         self._chip_model_name = self.get_parameter('chip_model_name').get_parameter_value().string_value
         self._chip_link_name = self.get_parameter('chip_link_name').get_parameter_value().string_value
+        self._pcb_model_name = self.get_parameter('pcb_model_name').get_parameter_value().string_value
+        self._pcb_link_name = self.get_parameter('pcb_link_name').get_parameter_value().string_value
 
         self._traj_client = ActionClient(self, FollowJointTrajectory, self._action_name)
         self._belt1_client = self.create_client(ConveyorBeltControl, self._belt1_name)
@@ -171,6 +175,24 @@ class PickPlaceCycle(Node):
             f'{self._robot_model_name}/{self._tool_link_name}'
         )
 
+    def _attach_chip_to_pcb(self) -> None:
+        req = AttachLink.Request()
+        req.model1_name = self._chip_model_name
+        req.link1_name = self._chip_link_name
+        req.model2_name = self._pcb_model_name
+        req.link2_name = self._pcb_link_name
+        future = self._attach_client.call_async(req)
+        rclpy.spin_until_future_complete(self, future, timeout_sec=5.0)
+        if not future.done() or future.result() is None:
+            raise RuntimeError('Attach chip-to-pcb service did not return a response')
+        result = future.result()
+        if not result.success:
+            raise RuntimeError(f'Attach chip-to-pcb failed: {result.message}')
+        self.get_logger().info(
+            f'Chip attached to PCB: {self._chip_model_name}/{self._chip_link_name} -> '
+            f'{self._pcb_model_name}/{self._pcb_link_name}'
+        )
+
     def _wait_for_belt2_object(self) -> None:
         """Spin until sonar_belt_stopper publishes object_ready on belt2."""
         self.get_logger().info('Waiting for object on belt2 sonar...')
@@ -206,6 +228,7 @@ class PickPlaceCycle(Node):
             self._send_joint_stage('place')
             time.sleep(0.2)
             self._detach_chip()                   # release chip after place
+            self._attach_chip_to_pcb()            # stabilize chip on pcb and avoid spin/jiggle
             self._send_joint_stage('retreat')
             time.sleep(0.2)
 

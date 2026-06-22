@@ -164,7 +164,7 @@ def generate_launch_description():
     spawn_drop_box = Node(
         package='gazebo_ros', executable='spawn_entity.py',
         arguments=['-file', drop_box_urdf, '-entity', 'drop_box',
-                   '-x', '0.0', '-y', '1.45', '-z', '0.8', '-timeout', '120.0'],
+                   '-x', '0.0', '-y', '1.45', '-z', '0.7', '-timeout', '120.0'],
         output='screen',
     )
 

@@ -46,10 +46,10 @@ BOBBY_CONTROL_JOINTS = ["joint_1", "joint_2", "joint_3", "joint_4",
                         "joint_5", "joint_6", "finger_left_joint"]
 BOBBY_INITIAL_POSITIONS = {
     "joint_1": "0.0",
-    "joint_2": "-0.75",
-    "joint_3": "1.25",
+    "joint_2": "0.0",
+    "joint_3": "0.0",
     "joint_4": "0.0",
-    "joint_5": "-0.5",
+    "joint_5": "0.0",
     "joint_6": "0.0",
     "finger_left_joint": "0.02",
 }
