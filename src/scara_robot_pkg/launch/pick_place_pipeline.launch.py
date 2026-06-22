@@ -11,8 +11,6 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     scara_pkg = get_package_share_directory('scara_robot_pkg')
-    moveit_pkg = get_package_share_directory('scara_moveit_config')
-
     # Ensure locally built packages (e.g. linkattacher_msgs) are importable
     _ws_root = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', '..')
     _ws_root = os.path.normpath(_ws_root)
@@ -37,23 +35,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(scara_pkg, 'launch', 'scara_conveyor_gazebo.launch.py')
         ),
-        launch_arguments={'launch_rviz': 'False'}.items(),
-    )
-
-    moveit_launch = TimerAction(
-        period=6.0,
-        actions=[
-            IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(
-                    os.path.join(moveit_pkg, 'launch', 'demo_with_controllers.launch.py')
-                ),
-                launch_arguments={
-                    'use_gazebo_controllers': 'True',
-                    'rviz_tutorial': 'False',
-                    'db': 'False',
-                }.items(),
-            )
-        ],
+        launch_arguments={'launch_rviz': 'True'}.items(),
     )
 
     scene_publisher = TimerAction(
@@ -95,7 +77,13 @@ def generate_launch_description():
                 output='screen',
                 # Temporary disable: keep sonar active but hide belt2 ready event from this node.
                 #remappings=[('belt2/object_ready', 'belt2/object_ready_disabled')],
-                parameters=[{'config_path': pick_place_config}],
+                parameters=[
+                    {
+                        'config_path': pick_place_config,
+                        # The robot entity spawned by scara_conveyor_gazebo.launch.py.
+                        'robot_model_name': 'combined_cell',
+                    }
+                ],
             )
         ],
     )
@@ -139,7 +127,6 @@ def generate_launch_description():
         ldpath_setup,
         gazebo_plugin_path_setup,
         gazebo_launch,
-        moveit_launch,
         scene_publisher,
         sonar_belt_stopper,
         pick_place_cycle,

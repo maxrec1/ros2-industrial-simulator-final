@@ -26,12 +26,20 @@ class PickPlaceCycle(Node):
         self.declare_parameter('belt2_service', '/belt2/CONVEYORPOWER')
         self.declare_parameter('belt_stop_power', 0.0)
         self.declare_parameter('belt_run_power', 20.0)
+        self.declare_parameter('robot_model_name', 'combined_cell')
+        self.declare_parameter('tool_link_name', 'Link_4')
+        self.declare_parameter('chip_model_name', 'chip1')
+        self.declare_parameter('chip_link_name', 'base_link_chip')
 
         self._action_name = self.get_parameter('controller_action').get_parameter_value().string_value
         self._belt1_name = self.get_parameter('belt1_service').get_parameter_value().string_value
         self._belt2_name = self.get_parameter('belt2_service').get_parameter_value().string_value
         self._belt_stop_power = float(self.get_parameter('belt_stop_power').get_parameter_value().double_value)
         self._belt_run_power = float(self.get_parameter('belt_run_power').get_parameter_value().double_value)
+        self._robot_model_name = self.get_parameter('robot_model_name').get_parameter_value().string_value
+        self._tool_link_name = self.get_parameter('tool_link_name').get_parameter_value().string_value
+        self._chip_model_name = self.get_parameter('chip_model_name').get_parameter_value().string_value
+        self._chip_link_name = self.get_parameter('chip_link_name').get_parameter_value().string_value
 
         self._traj_client = ActionClient(self, FollowJointTrajectory, self._action_name)
         self._belt1_client = self.create_client(ConveyorBeltControl, self._belt1_name)
@@ -129,23 +137,39 @@ class PickPlaceCycle(Node):
 
     def _attach_chip(self) -> None:
         req = AttachLink.Request()
-        req.model1_name = 'scara_robot'
-        req.link1_name = 'Link_4'
-        req.model2_name = 'chip1'
-        req.link2_name = 'base_link_chip'
+        req.model1_name = self._robot_model_name
+        req.link1_name = self._tool_link_name
+        req.model2_name = self._chip_model_name
+        req.link2_name = self._chip_link_name
         future = self._attach_client.call_async(req)
         rclpy.spin_until_future_complete(self, future, timeout_sec=5.0)
-        self.get_logger().info('Chip ATTACHED to Link_4')
+        if not future.done() or future.result() is None:
+            raise RuntimeError('Attach service did not return a response')
+        result = future.result()
+        if not result.success:
+            raise RuntimeError(f'Attach failed: {result.message}')
+        self.get_logger().info(
+            f'Chip attached: {self._chip_model_name}/{self._chip_link_name} -> '
+            f'{self._robot_model_name}/{self._tool_link_name}'
+        )
 
     def _detach_chip(self) -> None:
         req = DetachLink.Request()
-        req.model1_name = 'scara_robot'
-        req.link1_name = 'Link_4'
-        req.model2_name = 'chip1'
-        req.link2_name = 'base_link_chip'
+        req.model1_name = self._robot_model_name
+        req.link1_name = self._tool_link_name
+        req.model2_name = self._chip_model_name
+        req.link2_name = self._chip_link_name
         future = self._detach_client.call_async(req)
         rclpy.spin_until_future_complete(self, future, timeout_sec=5.0)
-        self.get_logger().info('Chip DETACHED from Link_4')
+        if not future.done() or future.result() is None:
+            raise RuntimeError('Detach service did not return a response')
+        result = future.result()
+        if not result.success:
+            raise RuntimeError(f'Detach failed: {result.message}')
+        self.get_logger().info(
+            f'Chip detached: {self._chip_model_name}/{self._chip_link_name} from '
+            f'{self._robot_model_name}/{self._tool_link_name}'
+        )
 
     def _wait_for_belt2_object(self) -> None:
         """Spin until sonar_belt_stopper publishes object_ready on belt2."""
