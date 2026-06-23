@@ -50,7 +50,7 @@ rosdep update
 ```bash
 cd src
 git clone https://github.com/IFRA-Cranfield/IFRA_ConveyorBelt.git
-cd ..
+cd 
 ```
 
 **IFRA_LinkAttacher** — Gazebo attach/detach plugin used by the pick-and-place cycle to grip objects with the robot end-effector:
@@ -58,7 +58,7 @@ cd ..
 ```bash
 cd src
 git clone https://github.com/IFRA-Cranfield/IFRA_LinkAttacher.git
-cd ..
+cd 
 ```
 
 ### 5. Install remaining ROS dependencies
@@ -123,6 +123,8 @@ ros2 service call /belt2/CONVEYORPOWER conveyorbelt_msgs/srv/ConveyorBeltControl
 # Stop
 ros2 service call /belt2/CONVEYORPOWER conveyorbelt_msgs/srv/ConveyorBeltControl "{power: 0.0}"
 ```
+# Notitz
+Wir haben ein pseudo HMI in rviz. Da kann man beide roboter über TCP mouse-drag positionieren.
 
 # Anleitung: ROS2 SCARA-Simulation in Docker starten
 
