@@ -78,18 +78,6 @@ source install/setup.bash
 
 ---
 
-## Packages
-
-### `scara_robot_pkg`
-Visualization package for the SCARA robot. Contains the URDF model, mesh files (STL), RViz configuration, and a launch file to view the robot with interactive joint controls.
-
-**Launch:**
-```bash
-ros2 launch scara_robot_pkg view_robot.launch.py
-```
-
-Opens RViz with the SCARA robot model and `joint_state_publisher_gui` for manually moving joints.
-
 ### `IFRA_ConveyorBelt`
 Gazebo conveyor belt simulation plugin, split into three sub-packages:
 - **`conveyorbelt_msgs`** — Custom ROS2 service/message definitions for controlling the belt
