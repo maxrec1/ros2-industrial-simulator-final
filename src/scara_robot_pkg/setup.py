@@ -33,6 +33,7 @@ setup(
             'move_joints = scara_robot_pkg.move_joints:main',
             'sonar_belt_stopper = scara_robot_pkg.sonar_belt_stopper:main',
             'dual_cell_cycle = scara_robot_pkg.dual_cell_cycle:main',
+            'bobby_pick_place = scara_robot_pkg.bobby_pick_place:main',
         ],
     },
 )

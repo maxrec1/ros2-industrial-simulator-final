@@ -42,6 +42,9 @@
   </link>
   <gazebo reference="pedestal_link">
     <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <!-- static is a MODEL property; inside <gazebo reference="link"> it is ignored. -->
+  <gazebo>
     <static>true</static>
   </gazebo>
 </robot>
