@@ -1,0 +1,561 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-06-22-22-46-28-383469-Schiff-8394
+[INFO] [launch]: Default logging verbosity is set to INFO
+WARNING:root:[33;21mCannot infer URDF from `/ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg`. -- using config/combined_cell.urdf[0m
+WARNING:root:[33;21mCannot infer SRDF from `/ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg`. -- using config/combined_cell.srdf[0m
+[INFO] [gzserver-1]: process started with pid [8395]
+[INFO] [gzclient-2]: process started with pid [8397]
+[INFO] [robot_state_publisher-3]: process started with pid [8399]
+[INFO] [static_transform_publisher-4]: process started with pid [8401]
+[INFO] [static_transform_publisher-5]: process started with pid [8403]
+[INFO] [spawn_entity.py-6]: process started with pid [8405]
+[INFO] [spawn_entity.py-7]: process started with pid [8407]
+[INFO] [spawn_entity.py-8]: process started with pid [8409]
+[INFO] [spawn_entity.py-9]: process started with pid [8411]
+[INFO] [move_group-10]: process started with pid [8413]
+[static_transform_publisher-5] [WARN] [1782168388.803000942] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-4] [WARN] [1782168388.804985923] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-4] [INFO] [1782168388.835512720] [belt1_sonar_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-4] translation: ('0.000000', '0.600000', '0.791000')
+[static_transform_publisher-4] rotation: ('0.000000', '0.707108', '0.000000', '0.707105')
+[static_transform_publisher-4] from 'world' to 'belt1_sonar_link'
+[static_transform_publisher-5] [INFO] [1782168388.836133093] [belt2_sonar_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-5] translation: ('-0.700000', '-1.000000', '0.791000')
+[static_transform_publisher-5] rotation: ('0.500002', '0.500000', '-0.500000', '0.499998')
+[static_transform_publisher-5] from 'world' to 'belt2_sonar_link'
+[robot_state_publisher-3] [INFO] [1782168388.900724656] [robot_state_publisher]: got segment Link_1
+[robot_state_publisher-3] [INFO] [1782168388.900908418] [robot_state_publisher]: got segment Link_2
+[robot_state_publisher-3] [INFO] [1782168388.900919639] [robot_state_publisher]: got segment Link_3
+[robot_state_publisher-3] [INFO] [1782168388.900925259] [robot_state_publisher]: got segment Link_4
+[robot_state_publisher-3] [INFO] [1782168388.900930439] [robot_state_publisher]: got segment base_link
+[robot_state_publisher-3] [INFO] [1782168388.900936059] [robot_state_publisher]: got segment bobby_TCP
+[robot_state_publisher-3] [INFO] [1782168388.900941079] [robot_state_publisher]: got segment bobby_base_link
+[robot_state_publisher-3] [INFO] [1782168388.900946489] [robot_state_publisher]: got segment bobby_finger_left
+[robot_state_publisher-3] [INFO] [1782168388.900951759] [robot_state_publisher]: got segment bobby_finger_right
+[robot_state_publisher-3] [INFO] [1782168388.900957008] [robot_state_publisher]: got segment bobby_gripper_base
+[robot_state_publisher-3] [INFO] [1782168388.900961907] [robot_state_publisher]: got segment bobby_gripper_flange
+[robot_state_publisher-3] [INFO] [1782168388.900967157] [robot_state_publisher]: got segment bobby_link_1
+[robot_state_publisher-3] [INFO] [1782168388.900972317] [robot_state_publisher]: got segment bobby_link_2
+[robot_state_publisher-3] [INFO] [1782168388.900977306] [robot_state_publisher]: got segment bobby_link_3
+[robot_state_publisher-3] [INFO] [1782168388.900982115] [robot_state_publisher]: got segment bobby_link_4
+[robot_state_publisher-3] [INFO] [1782168388.900986934] [robot_state_publisher]: got segment bobby_link_5
+[robot_state_publisher-3] [INFO] [1782168388.900992033] [robot_state_publisher]: got segment bobby_link_6
+[robot_state_publisher-3] [INFO] [1782168388.900996923] [robot_state_publisher]: got segment world
+[move_group-10] [INFO] [1782168388.915172122] [moveit_rdf_loader.rdf_loader]: Loaded robot model in 0 seconds
+[move_group-10] [INFO] [1782168388.915284201] [moveit_robot_model.robot_model]: Loading robot model 'combined_cell'...
+[move_group-10] [INFO] [1782168388.915296504] [moveit_robot_model.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[move_group-10] [INFO] [1782168388.942175006] [moveit_cached_ik_kinematics_plugin.cached_ik_kinematics_plugin]: cache file /ros2_ws/combined_cellscara_arm_base_linkLink_4_5000_1.000000_1.000000.ikcache initialized!
+[move_group-10] [INFO] [1782168389.025146448] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Publishing maintained planning scene on 'monitored_planning_scene'
+[move_group-10] [INFO] [1782168389.025500116] [moveit.ros_planning_interface.moveit_cpp]: Listening to 'joint_states' for joint states
+[move_group-10] [INFO] [1782168389.029640635] [moveit_ros.current_state_monitor]: Listening to joint states on topic 'joint_states'
+[move_group-10] [INFO] [1782168389.034915715] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/attached_collision_object' for attached collision objects
+[move_group-10] [INFO] [1782168389.034972551] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting planning scene monitor
+[move_group-10] [INFO] [1782168389.036516983] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to '/planning_scene'
+[move_group-10] [INFO] [1782168389.036562207] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Starting world geometry update monitor for collision objects, attached objects, octomap updates.
+[move_group-10] [INFO] [1782168389.037391699] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'collision_object'
+[move_group-10] [INFO] [1782168389.038132837] [moveit_ros.planning_scene_monitor.planning_scene_monitor]: Listening to 'planning_scene_world' for planning scene world geometry
+[move_group-10] [WARN] [1782168389.038453383] [moveit.ros.occupancy_map_monitor.middleware_handle]: Resolution not specified for Octomap. Assuming resolution = 0.1 instead
+[move_group-10] [ERROR] [1782168389.038479021] [moveit.ros.occupancy_map_monitor.middleware_handle]: No 3D sensor plugin(s) defined for octomap updates
+[move_group-10] [INFO] [1782168389.051707471] [moveit.ros_planning_interface.moveit_cpp]: Loading planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168389.066277194] [moveit.ros_planning.planning_pipeline]: Using planning interface 'OMPL'
+[spawn_entity.py-7] [INFO] [1782168389.067614421] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-7] [INFO] [1782168389.068064097] [spawn_entity]: Loading entity XML from file /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/urdf/pedestal.urdf
+[move_group-10] [INFO] [1782168389.068725787] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.path_tolerance' was not set. Using default value: 0.100000
+[move_group-10] [INFO] [1782168389.068745775] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.resample_dt' was not set. Using default value: 0.100000
+[move_group-10] [INFO] [1782168389.068749922] [moveit_ros.add_time_optimal_parameterization]: Param 'ompl.min_angle_change' was not set. Using default value: 0.001000
+[move_group-10] [INFO] [1782168389.068767806] [moveit_ros.fix_workspace_bounds]: Param 'ompl.default_workspace_bounds' was not set. Using default value: 10.000000
+[move_group-10] [INFO] [1782168389.068780078] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_bounds_error' was set to 0.100000
+[move_group-10] [INFO] [1782168389.068785158] [moveit_ros.fix_start_state_bounds]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-10] [INFO] [1782168389.068797811] [moveit_ros.fix_start_state_collision]: Param 'ompl.start_state_max_dt' was not set. Using default value: 0.500000
+[move_group-10] [INFO] [1782168389.068803432] [moveit_ros.fix_start_state_collision]: Param 'ompl.jiggle_fraction' was not set. Using default value: 0.020000
+[move_group-10] [INFO] [1782168389.068808101] [moveit_ros.fix_start_state_collision]: Param 'ompl.max_sampling_attempts' was not set. Using default value: 100
+[move_group-10] [INFO] [1782168389.068817227] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Add Time Optimal Parameterization'
+[move_group-10] [INFO] [1782168389.068820634] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Resolve constraint frames to robot links'
+[move_group-10] [INFO] [1782168389.068823058] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Workspace Bounds'
+[move_group-10] [INFO] [1782168389.068825403] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Bounds'
+[move_group-10] [INFO] [1782168389.068827406] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State In Collision'
+[move_group-10] [INFO] [1782168389.068829490] [moveit.ros_planning.planning_pipeline]: Using planning request adapter 'Fix Start State Path Constraints'
+[spawn_entity.py-7] [INFO] [1782168389.068752527] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-7] [INFO] [1782168389.069104131] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-8] [INFO] [1782168389.080825468] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-8] [INFO] [1782168389.081299549] [spawn_entity]: Loading entity XML from file /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/urdf/drop_box.urdf
+[spawn_entity.py-6] [INFO] [1782168389.081351696] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-8] [INFO] [1782168389.082016232] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-8] [INFO] [1782168389.082353159] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-6] [INFO] [1782168389.082152475] [spawn_entity]: Loading entity XML from file /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/urdf/pedestal.urdf
+[spawn_entity.py-6] [INFO] [1782168389.083199973] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-6] [INFO] [1782168389.083709741] [spawn_entity]: Waiting for service /spawn_entity
+[spawn_entity.py-9] [INFO] [1782168389.105316952] [spawn_entity]: Spawn Entity started
+[spawn_entity.py-9] [INFO] [1782168389.105655812] [spawn_entity]: Loading entity published on topic robot_description
+[move_group-10] [INFO] [1782168389.107477449] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for arm_trajectory_controller
+[spawn_entity.py-9] [INFO] [1782168389.107547670] [spawn_entity]: Waiting for entity xml on robot_description
+[move_group-10] [INFO] [1782168389.110861081] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for bobby_arm_controller
+[move_group-10] [INFO] [1782168389.112860519] [moveit.plugins.moveit_simple_controller_manager]: Added FollowJointTrajectory controller for bobby_gripper_controller
+[move_group-10] [INFO] [1782168389.113005349] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168389.113025817] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168389.113612388] [moveit_ros.trajectory_execution_manager]: Trajectory execution is managing controllers
+[move_group-10] [INFO] [1782168389.113629439] [move_group.move_group]: MoveGroup debug mode is ON
+[move_group-10] [INFO] [1782168389.129818955] [move_group.move_group]: 
+[move_group-10] 
+[move_group-10] ********************************************************
+[move_group-10] * MoveGroup using: 
+[move_group-10] *     - ApplyPlanningSceneService
+[move_group-10] *     - ClearOctomapService
+[move_group-10] *     - CartesianPathService
+[move_group-10] *     - ExecuteTrajectoryAction
+[move_group-10] *     - GetPlanningSceneService
+[move_group-10] *     - KinematicsService
+[move_group-10] *     - MoveAction
+[move_group-10] *     - MotionPlanService
+[move_group-10] *     - QueryPlannersService
+[move_group-10] *     - StateValidationService
+[move_group-10] ********************************************************
+[move_group-10] 
+[move_group-10] [INFO] [1782168389.129896980] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context using planning plugin ompl_interface/OMPLPlanner
+[move_group-10] [INFO] [1782168389.129911978] [moveit_move_group_capabilities_base.move_group_context]: MoveGroup context initialization complete
+[move_group-10] [96mLoading 'move_group/ApplyPlanningSceneService'...
+[move_group-10] [0m[96mLoading 'move_group/ClearOctomapService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupCartesianPathService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupExecuteTrajectoryAction'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupGetPlanningSceneService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupKinematicsService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupMoveAction'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupPlanService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupQueryPlannersService'...
+[move_group-10] [0m[96mLoading 'move_group/MoveGroupStateValidationService'...
+[move_group-10] [0m[92m
+[move_group-10] You can start planning now!
+[move_group-10] 
+[spawn_entity.py-9] [INFO] [1782168389.210219426] [spawn_entity]: Waiting for service /spawn_entity, timeout = 120
+[spawn_entity.py-9] [INFO] [1782168389.210594734] [spawn_entity]: Waiting for service /spawn_entity
+[gzserver-1] ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+[gzserver-1] ALSA lib confmisc.c:1334:(snd_func_refer) error evaluating name
+[gzserver-1] ALSA lib conf.c:5178:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+[gzserver-1] ALSA lib conf.c:5701:(snd_config_expand) Evaluate error: No such file or directory
+[gzserver-1] ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
+[gzserver-1] AL lib: (EE) ALCplaybackAlsa_open: Could not open playback device 'default': No such file or directory
+[spawn_entity.py-7] [INFO] [1782168389.574648020] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-8] [INFO] [1782168389.588736389] [spawn_entity]: Calling service /spawn_entity
+[spawn_entity.py-6] [INFO] [1782168389.590758910] [spawn_entity]: Calling service /spawn_entity
+[gzserver-1] [INFO] [1782168389.609867083] [belt1_sonar_plugin]: missing <radiation_type>, defaulting to infrared
+[gzserver-1] [INFO] [1782168389.613785099] [belt2_sonar_plugin]: missing <radiation_type>, defaulting to infrared
+[gzserver-1] [INFO] [1782168389.623940604] [gazebo_ros_state]: Publishing states of gazebo models at [/model_states]
+[gzserver-1] [INFO] [1782168389.624317966] [gazebo_ros_state]: Publishing states of gazebo links at [/link_states]
+[gzserver-1] [INFO] [1782168389.638785769] [ros2_conveyorbelt_plugin]: GAZEBO ConveyorBelt plugin loaded successfully.
+[gzserver-1] [INFO] [1782168389.644080906] [belt2.ros2_conveyorbelt_plugin]: GAZEBO ConveyorBelt plugin loaded successfully.
+[spawn_entity.py-7] [INFO] [1782168389.740285987] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [bobby_pedestal]
+[INFO] [spawn_entity.py-7]: process has finished cleanly [pid 8407]
+[spawn_entity.py-8] [INFO] [1782168389.957176252] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [drop_box]
+[INFO] [spawn_entity.py-8]: process has finished cleanly [pid 8409]
+[spawn_entity.py-6] [INFO] [1782168390.180835595] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [scara_pedestal]
+[spawn_entity.py-9] [INFO] [1782168390.216851350] [spawn_entity]: Calling service /spawn_entity
+[INFO] [spawn_entity.py-6]: process has finished cleanly [pid 8405]
+[spawn_entity.py-9] [INFO] [1782168390.439417230] [spawn_entity]: Spawn status: SpawnEntity: Successfully spawned entity [combined_cell]
+[gzserver-1] [INFO] [1782168390.463139443] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[gzserver-1] [INFO] [1782168390.473649567] [combined_gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[gzserver-1] [INFO] [1782168390.473710150] [combined_gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: combined_gazebo_ros2_control
+[gzserver-1] [INFO] [1782168390.480547845] [combined_gazebo_ros2_control]: connected to service!! robot_state_publisher
+[gzserver-1] [INFO] [1782168390.481153702] [combined_gazebo_ros2_control]: Received urdf from param server, parsing...
+[gzserver-1] [INFO] [1782168390.481200098] [combined_gazebo_ros2_control]: Loading parameter files /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/config/combined_controllers.yaml
+[gzserver-1] [INFO] [1782168390.492006824] [combined_gazebo_ros2_control]: Loading joint: Joint_1
+[gzserver-1] [INFO] [1782168390.492084308] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.492094227] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.492110277] [combined_gazebo_ros2_control]: 			 found initial value: 0.684900
+[gzserver-1] [INFO] [1782168390.492126657] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.492133590] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.492139591] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.492526591] [combined_gazebo_ros2_control]: Loading joint: Joint_2
+[gzserver-1] [INFO] [1782168390.492545807] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.492553952] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.492563219] [combined_gazebo_ros2_control]: 			 found initial value: -2.529900
+[gzserver-1] [INFO] [1782168390.492571935] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.492577245] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.492582445] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.492813394] [combined_gazebo_ros2_control]: Loading joint: Joint_3
+[gzserver-1] [INFO] [1782168390.492827861] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.492835385] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.492843510] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.492852347] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.492860632] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.492868747] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493139861] [combined_gazebo_ros2_control]: Loading joint: Joint_4
+[gzserver-1] [INFO] [1782168390.493148808] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.493156823] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493164046] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.493172943] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.493180186] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.493187289] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493391399] [combined_gazebo_ros2_control]: Loading joint: joint_1
+[gzserver-1] [INFO] [1782168390.493401718] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.493408992] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493418139] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.493426635] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.493433988] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.493440911] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493688361] [combined_gazebo_ros2_control]: Loading joint: joint_2
+[gzserver-1] [INFO] [1782168390.493738064] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.493743824] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493748814] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.493755115] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.493759774] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.493764152] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.493987067] [combined_gazebo_ros2_control]: Loading joint: joint_3
+[gzserver-1] [INFO] [1782168390.493996454] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.494001884] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494006793] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.494012905] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.494017854] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.494022452] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494220581] [combined_gazebo_ros2_control]: Loading joint: joint_4
+[gzserver-1] [INFO] [1782168390.494232513] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.494239897] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494247200] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.494255977] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.494262839] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.494270464] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494475575] [combined_gazebo_ros2_control]: Loading joint: joint_5
+[gzserver-1] [INFO] [1782168390.494486525] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.494491685] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494498888] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.494505080] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.494510209] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.494515058] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494740297] [combined_gazebo_ros2_control]: Loading joint: joint_6
+[gzserver-1] [INFO] [1782168390.494752580] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.494759784] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494766927] [combined_gazebo_ros2_control]: 			 found initial value: 0.000000
+[gzserver-1] [INFO] [1782168390.494775252] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.494779891] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.494784550] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494965025] [combined_gazebo_ros2_control]: Loading joint: finger_left_joint
+[gzserver-1] [INFO] [1782168390.494975384] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.494982858] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.494991314] [combined_gazebo_ros2_control]: 			 found initial value: 0.020000
+[gzserver-1] [INFO] [1782168390.495001703] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.495008827] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.495015279] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.495273399] [combined_gazebo_ros2_control]: Loading joint: finger_right_joint
+[gzserver-1] [INFO] [1782168390.495287765] [combined_gazebo_ros2_control]: 	State:
+[gzserver-1] [INFO] [1782168390.495295900] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.495303835] [combined_gazebo_ros2_control]: 			 found initial value: -0.020000
+[gzserver-1] [INFO] [1782168390.495313704] [combined_gazebo_ros2_control]: 		 velocity
+[gzserver-1] [INFO] [1782168390.495322059] [combined_gazebo_ros2_control]: 	Command:
+[gzserver-1] [INFO] [1782168390.495328511] [combined_gazebo_ros2_control]: 		 position
+[gzserver-1] [INFO] [1782168390.495628238] [resource_manager]: Initialize hardware 'CombinedGazeboSystem' 
+[gzserver-1] [INFO] [1782168390.495831266] [resource_manager]: Successful initialization of hardware 'CombinedGazeboSystem'
+[gzserver-1] [INFO] [1782168390.495930811] [resource_manager]: 'configure' hardware 'CombinedGazeboSystem' 
+[gzserver-1] [INFO] [1782168390.495969533] [resource_manager]: Successful 'configure' of hardware 'CombinedGazeboSystem'
+[gzserver-1] [INFO] [1782168390.495981455] [resource_manager]: 'activate' hardware 'CombinedGazeboSystem' 
+[gzserver-1] [INFO] [1782168390.495987066] [resource_manager]: Successful 'activate' of hardware 'CombinedGazeboSystem'
+[gzserver-1] [INFO] [1782168390.496090288] [combined_gazebo_ros2_control]: Loading controller_manager
+[gzserver-1] [WARN] [1782168390.519097562] [combined_gazebo_ros2_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[gzserver-1] [INFO] [1782168390.519421444] [combined_gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[INFO] [spawn_entity.py-9]: process has finished cleanly [pid 8411]
+[INFO] [spawner-11]: process started with pid [8755]
+[INFO] [spawner-12]: process started with pid [8757]
+[INFO] [spawner-13]: process started with pid [8759]
+[INFO] [spawner-14]: process started with pid [8761]
+[spawner-13] [INFO] [1782168390.823254908] [spawner_bobby_arm_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-14] [INFO] [1782168390.823273352] [spawner_bobby_gripper_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-12] [INFO] [1782168390.824653499] [spawner_arm_trajectory_controller]: waiting for service /controller_manager/list_controllers to become available...
+[spawner-11] [INFO] [1782168390.825398795] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[gzserver-1] [INFO] [1782168391.076461357] [controller_manager]: Loading controller 'bobby_gripper_controller'
+[gzserver-1] [WARN] [1782168391.097246068] [bobby_gripper_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[gzserver-1] [INFO] [1782168391.100555702] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[spawner-14] [INFO] [1782168391.101621084] [spawner_bobby_gripper_controller]: [94mLoaded [1mbobby_gripper_controller[0m
+[gzserver-1] [INFO] [1782168391.120429730] [controller_manager]: Configuring controller 'bobby_gripper_controller'
+[gzserver-1] [INFO] [1782168391.120745758] [bobby_gripper_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-1] [INFO] [1782168391.120768179] [bobby_gripper_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-1] [INFO] [1782168391.120792014] [bobby_gripper_controller]: Using 'splines' interpolation method.
+[spawner-11] [INFO] [1782168391.121437624] [spawner_joint_state_broadcaster]: [94mLoaded [1mjoint_state_broadcaster[0m
+[gzserver-1] [INFO] [1782168391.121961959] [bobby_gripper_controller]: Controller state will be published at 50.00 Hz.
+[gzserver-1] [INFO] [1782168391.126535564] [bobby_gripper_controller]: Action status changes will be monitored at 20.00 Hz.
+[gzserver-1] [INFO] [1782168391.140524438] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-1] [INFO] [1782168391.140599527] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[spawner-14] [INFO] [1782168391.171225098] [spawner_bobby_gripper_controller]: [92mConfigured and activated [1mbobby_gripper_controller[0m
+[spawner-11] [INFO] [1782168391.191553912] [spawner_joint_state_broadcaster]: [92mConfigured and activated [1mjoint_state_broadcaster[0m
+[INFO] [spawner-14]: process has finished cleanly [pid 8761]
+[INFO] [spawner-11]: process has finished cleanly [pid 8755]
+[gzserver-1] [INFO] [1782168392.177077189] [controller_manager]: Loading controller 'bobby_arm_controller'
+[gzserver-1] [WARN] [1782168392.201808720] [bobby_arm_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[gzserver-1] [INFO] [1782168392.211087535] [controller_manager]: Loading controller 'arm_trajectory_controller'
+[spawner-13] [INFO] [1782168392.213452322] [spawner_bobby_arm_controller]: [94mLoaded [1mbobby_arm_controller[0m
+[gzserver-1] [WARN] [1782168392.230510403] [arm_trajectory_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[gzserver-1] [INFO] [1782168392.239214690] [controller_manager]: Configuring controller 'bobby_arm_controller'
+[gzserver-1] [INFO] [1782168392.239535827] [bobby_arm_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-1] [INFO] [1782168392.239564661] [bobby_arm_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-1] [INFO] [1782168392.239588224] [bobby_arm_controller]: Using 'splines' interpolation method.
+[spawner-12] [INFO] [1782168392.240383493] [spawner_arm_trajectory_controller]: [94mLoaded [1marm_trajectory_controller[0m
+[gzserver-1] [INFO] [1782168392.241813533] [bobby_arm_controller]: Controller state will be published at 50.00 Hz.
+[gzserver-1] [INFO] [1782168392.244666117] [bobby_arm_controller]: Action status changes will be monitored at 20.00 Hz.
+[gzserver-1] [INFO] [1782168392.263896588] [controller_manager]: Configuring controller 'arm_trajectory_controller'
+[gzserver-1] [INFO] [1782168392.264139820] [arm_trajectory_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gzserver-1] [INFO] [1782168392.264162543] [arm_trajectory_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gzserver-1] [INFO] [1782168392.264179304] [arm_trajectory_controller]: Using 'splines' interpolation method.
+[gzserver-1] [INFO] [1782168392.265517452] [arm_trajectory_controller]: Controller state will be published at 50.00 Hz.
+[gzserver-1] [INFO] [1782168392.267876920] [arm_trajectory_controller]: Action status changes will be monitored at 20.00 Hz.
+[spawner-13] [INFO] [1782168392.301922851] [spawner_bobby_arm_controller]: [92mConfigured and activated [1mbobby_arm_controller[0m
+[spawner-12] [INFO] [1782168392.319861360] [spawner_arm_trajectory_controller]: [92mConfigured and activated [1marm_trajectory_controller[0m
+[INFO] [spawner-13]: process has finished cleanly [pid 8759]
+[INFO] [spawner-12]: process has finished cleanly [pid 8757]
+[INFO] [scene_publisher-15]: process started with pid [8869]
+[INFO] [sonar_belt_stopper-16]: process started with pid [8871]
+[sonar_belt_stopper-16] [INFO] [1782168398.432353230] [sonar_belt_stopper]: SonarBeltStopper started. Threshold: 0.049 m, cooldown: 10.0 s
+[scene_publisher-15] [INFO] [1782168398.463227654] [scene_publisher]: Published static collision objects (pedestal + 2 conveyors)
+[scene_publisher-15] [INFO] [1782168399.041865949] [scene_publisher]: PCB mesh loaded: 38840 triangles
+[scene_publisher-15] [INFO] [1782168399.046924376] [scene_publisher]: Scene publisher ready – frame=world, tracking ['pcb1', 'chip1'] @ 5.0 Hz
+[gzserver-1] [INFO] [1782168423.852039643] [bobby_gripper_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168423.852224316] [bobby_gripper_controller]: Accepted new action goal
+[gzserver-1] [INFO] [1782168424.862675886] [bobby_gripper_controller]: Goal reached, success!
+[gzserver-1] [INFO] [1782168517.867844077] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[gzserver-1] [ERROR] [1782168517.867940346] [controller_manager]: Controller 'joint_state_broadcaster' can not be configured from 'active' state.
+[gzserver-1] [WARN] [1782168517.983894093] [controller_manager.rclcpp]: failed to send response to /controller_manager/list_controllers (timeout): client will not receive response, at ./src/rmw_response.cpp:154, at ./src/rcl/service.c:314
+[gzserver-1] [INFO] [1782168517.990701255] [controller_manager]: Configuring controller 'bobby_gripper_controller'
+[gzserver-1] [ERROR] [1782168517.991092933] [controller_manager]: Controller 'bobby_gripper_controller' can not be configured from 'active' state.
+[gzserver-1] [INFO] [1782168518.967091029] [controller_manager]: Configuring controller 'bobby_arm_controller'
+[gzserver-1] [ERROR] [1782168518.967261306] [controller_manager]: Controller 'bobby_arm_controller' can not be configured from 'active' state.
+[gzserver-1] [INFO] [1782168527.892760690] [controller_manager]: Configuring controller 'arm_trajectory_controller'
+[gzserver-1] [ERROR] [1782168527.892872168] [controller_manager]: Controller 'arm_trajectory_controller' can not be configured from 'active' state.
+[INFO] [gzclient-2]: process has finished cleanly [pid 8397]
+[move_group-10] [INFO] [1782168543.151873888] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168543.152210534] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168543.152392513] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168543.152506645] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168543.152518698] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168543.153474656] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [WARN] [1782168543.175743588] [moveit_trajectory_processing.time_optimal_trajectory_generation]: Joint acceleration limits are not defined. Using the default 1 rad/s^2. You can define acceleration limits in the URDF or joint_limits.yaml.
+[move_group-10] [INFO] [1782168543.195478658] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168543.195533961] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168543.195647231] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-10] [INFO] [1782168543.195753218] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-10] [INFO] [1782168543.195862201] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168543.195893459] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168543.196408988] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to bobby_arm_controller
+[gzserver-1] [INFO] [1782168543.197127715] [bobby_arm_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168543.197256154] [bobby_arm_controller]: Accepted new action goal
+[move_group-10] [INFO] [1782168543.197498916] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: bobby_arm_controller started execution
+[move_group-10] [INFO] [1782168543.197527098] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gzserver-1] [INFO] [1782168543.213906966] [bobby_arm_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168543.213992515] [bobby_arm_controller]: Accepted new action goal
+[gzserver-1] [INFO] [1782168543.218800389] [bobby_arm_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168543.218913709] [bobby_arm_controller]: Accepted new action goal
+[move_group-10] [INFO] [1782168543.219413038] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'bobby_arm_controller' successfully finished
+[move_group-10] [WARN] [1782168543.219985433] [moveit_ros.trajectory_execution_manager]: Controller handle bobby_arm_controller reports status PREEMPTED
+[move_group-10] [INFO] [1782168543.220004749] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status PREEMPTED ...
+[move_group-10] [INFO] [1782168543.226064160] [moveit_move_group_default_capabilities.move_action_capability]: Solution found but controller failed during execution
+[gzserver-1] [INFO] [1782168557.983777854] [bobby_arm_controller]: Goal reached, success!
+[sonar_belt_stopper-16] [INFO] [1782168603.893705595] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168613.998189242] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168624.037910932] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168634.041851017] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168644.092167504] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[move_group-10] [INFO] [1782168646.735236004] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168646.735392435] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168647.171437875] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168647.171575400] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168647.171595057] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168647.173806671] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_arm' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168647.198041598] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168647.198109714] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168647.198223706] [moveit_ros.trajectory_execution_manager]: Validating trajectory with allowed_start_tolerance 0.01
+[move_group-10] [INFO] [1782168647.198351995] [moveit_ros.trajectory_execution_manager]: Starting trajectory execution ...
+[move_group-10] [INFO] [1782168647.198436182] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168647.198468642] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168647.198842598] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: sending trajectory to bobby_arm_controller
+[gzserver-1] [INFO] [1782168647.199142506] [bobby_arm_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168647.199231341] [bobby_arm_controller]: Accepted new action goal
+[move_group-10] [INFO] [1782168647.199556997] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: bobby_arm_controller started execution
+[move_group-10] [INFO] [1782168647.199587093] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Goal request accepted!
+[gzserver-1] [INFO] [1782168647.299106166] [bobby_arm_controller]: Received new action goal
+[gzserver-1] [INFO] [1782168647.299220559] [bobby_arm_controller]: Accepted new action goal
+[gzserver-1] [INFO] [1782168649.055491604] [bobby_arm_controller]: Goal reached, success!
+[move_group-10] [INFO] [1782168649.055984231] [moveit.simple_controller_manager.follow_joint_trajectory_controller_handle]: Controller 'bobby_arm_controller' successfully finished
+[move_group-10] [WARN] [1782168649.056035847] [moveit_ros.trajectory_execution_manager]: Controller handle bobby_arm_controller reports status PREEMPTED
+[move_group-10] [INFO] [1782168649.056051646] [moveit_ros.trajectory_execution_manager]: Completed trajectory execution with status PREEMPTED ...
+[move_group-10] [INFO] [1782168649.057158345] [moveit_move_group_default_capabilities.move_action_capability]: Solution found but controller failed during execution
+[sonar_belt_stopper-16] [INFO] [1782168654.151647863] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168664.169909886] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[move_group-10] [INFO] [1782168670.001695152] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168670.002050724] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168670.715080949] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168670.976715543] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168670.976780564] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168671.239169863] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168671.239701261] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168671.257424615] [moveit_kinematic_constraints.kinematic_constraints]: Constraint satisfied:: Joint name: 'finger_left_joint', actual value: 0.016586, desired value: 0.016509, tolerance_above: 0.000100, tolerance_below: 0.000100
+[move_group-10] [INFO] [1782168671.258623846] [moveit_collision_detection_fcl.collision_common]: Found a contact between 'pcb1' (type 'Object') and 'bobby_finger_left' (type 'Robot link'), which constitutes a collision. Contact information is not stored.
+[move_group-10] [INFO] [1782168671.258795305] [moveit_collision_detection_fcl.collision_common]: Collision checking is considered complete (collision was found and 0 contacts are stored)
+[move_group-10] [ERROR] [1782168671.270306310] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168671.270418389] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168671.270709230] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168671.271766567] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [WARN] [1782168671.271827029] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.031988 seconds
+[move_group-10] [ERROR] [1782168671.272117921] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168671.272208299] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168671.272279551] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168671.272315719] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168671.272366974] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000449 seconds
+[move_group-10] [ERROR] [1782168671.272575422] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168671.272629392] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168671.272688402] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000231 seconds
+[move_group-10] [INFO] [1782168671.272745338] [moveit.ompl_planning.model_based_planning_context]: Unable to solve the planning problem
+[move_group-10] [INFO] [1782168671.272808545] [moveit_move_group_default_capabilities.move_action_capability]: Catastrophic failure
+[move_group-10] [INFO] [1782168673.678602798] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168673.678837464] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168673.953796239] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168673.953925159] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168673.953957258] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168673.954256255] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168673.954950536] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168673.978939516] [moveit_kinematic_constraints.kinematic_constraints]: Constraint satisfied:: Joint name: 'finger_left_joint', actual value: 0.016596, desired value: 0.016509, tolerance_above: 0.000100, tolerance_below: 0.000100
+[move_group-10] [INFO] [1782168673.980501983] [moveit_collision_detection_fcl.collision_common]: Found a contact between 'pcb1' (type 'Object') and 'bobby_finger_left' (type 'Robot link'), which constitutes a collision. Contact information is not stored.
+[move_group-10] [INFO] [1782168673.980530657] [moveit_collision_detection_fcl.collision_common]: Collision checking is considered complete (collision was found and 0 contacts are stored)
+[move_group-10] [ERROR] [1782168673.989685338] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168673.989847189] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168673.998179171] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168673.998487073] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [WARN] [1782168673.998709958] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.043523 seconds
+[move_group-10] [ERROR] [1782168673.998985631] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168673.999046103] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168673.999176266] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168673.999233723] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168673.999338247] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000520 seconds
+[move_group-10] [ERROR] [1782168673.999436961] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168673.999465053] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168673.999506720] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000129 seconds
+[move_group-10] [INFO] [1782168673.999544200] [moveit.ompl_planning.model_based_planning_context]: Unable to solve the planning problem
+[move_group-10] [INFO] [1782168673.999589985] [moveit_move_group_default_capabilities.move_action_capability]: Catastrophic failure
+[sonar_belt_stopper-16] [INFO] [1782168674.179242318] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[move_group-10] [INFO] [1782168676.828225867] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168676.828493806] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [WARN] [1782168676.928648408] [moveit_ros.current_state_monitor]: No state update received within 100ms of system clock. Have been waiting for 0.000000s, timeout is 1.000000s
+[move_group-10] [INFO] [1782168677.174275244] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168677.174364721] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168677.174379178] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168677.174582366] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168677.175040789] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168677.181431388] [moveit_kinematic_constraints.kinematic_constraints]: Constraint satisfied:: Joint name: 'finger_left_joint', actual value: 0.016597, desired value: 0.016509, tolerance_above: 0.000100, tolerance_below: 0.000100
+[move_group-10] [INFO] [1782168677.181495948] [moveit_collision_detection_fcl.collision_common]: Found a contact between 'pcb1' (type 'Object') and 'bobby_finger_left' (type 'Robot link'), which constitutes a collision. Contact information is not stored.
+[move_group-10] [INFO] [1782168677.181504444] [moveit_collision_detection_fcl.collision_common]: Collision checking is considered complete (collision was found and 0 contacts are stored)
+[move_group-10] [ERROR] [1782168677.185899511] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168677.186082541] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168677.195679256] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [ERROR] [1782168677.196062258] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:265 - bobby_gripper/bobby_gripper: Unable to sample any valid states for goal tree
+[move_group-10] [WARN] [1782168677.196179787] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.020952 seconds
+[move_group-10] [ERROR] [1782168677.196819908] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168677.196897983] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168677.197006004] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168677.197071686] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168677.197265136] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000793 seconds
+[move_group-10] [ERROR] [1782168677.197702740] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [ERROR] [1782168677.197933810] [ompl]: ./src/ompl/geometric/planners/rrt/src/RRTConnect.cpp:225 - bobby_gripper/bobby_gripper: Insufficient states in sampleable goal region
+[move_group-10] [WARN] [1782168677.198293730] [ompl]: ./src/ompl/tools/multiplan/src/ParallelPlan.cpp:138 - ParallelPlan::solve(): Unable to find solution by any of the threads in 0.000888 seconds
+[move_group-10] [INFO] [1782168677.198398895] [moveit.ompl_planning.model_based_planning_context]: Unable to solve the planning problem
+[move_group-10] [INFO] [1782168677.198497218] [moveit_move_group_default_capabilities.move_action_capability]: Catastrophic failure
+[sonar_belt_stopper-16] [INFO] [1782168684.228205228] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[move_group-10] [INFO] [1782168692.827837774] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168692.828026184] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168693.330678842] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168693.330772787] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168693.330786983] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168693.331020167] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168693.331529034] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168693.383643752] [moveit.ros_planning.planning_pipeline]: Planning adapters have added states at index positions: [ 0 ]
+[move_group-10] [INFO] [1782168693.384202402] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168693.384226356] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168693.384253457] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168693.384259949] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [ERROR] [1782168693.384270919] [moveit_ros.trajectory_execution_manager]: Unable to identify any set of controllers that can actuate the specified joints: [ finger_left_joint finger_right_joint ]
+[move_group-10] [ERROR] [1782168693.384312106] [moveit_ros.trajectory_execution_manager]: Known controllers and their joints:
+[move_group-10] controller 'arm_trajectory_controller' controls joints:
+[move_group-10]   Joint_1
+[move_group-10]   Joint_2
+[move_group-10]   Joint_3
+[move_group-10]   Joint_4
+[move_group-10] controller 'bobby_arm_controller' controls joints:
+[move_group-10]   joint_1
+[move_group-10]   joint_2
+[move_group-10]   joint_3
+[move_group-10]   joint_4
+[move_group-10]   joint_5
+[move_group-10]   joint_6
+[move_group-10] controller 'bobby_gripper_controller' controls joints:
+[move_group-10]   finger_left_joint
+[move_group-10] 
+[move_group-10] [ERROR] [1782168693.384320341] [moveit_ros.plan_execution]: Apparently trajectory initialization failed
+[move_group-10] [INFO] [1782168693.384351760] [moveit_move_group_default_capabilities.move_action_capability]: Solution found but controller failed during execution
+[sonar_belt_stopper-16] [INFO] [1782168694.298190063] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[move_group-10] [INFO] [1782168696.268733748] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168696.268907632] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [INFO] [1782168696.762667598] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168696.762763687] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168696.762776812] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168696.762967106] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168696.763431660] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168696.808660608] [moveit.ros_planning.planning_pipeline]: Planning adapters have added states at index positions: [ 0 ]
+[move_group-10] [INFO] [1782168696.810637887] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168696.810673363] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168696.810705352] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168696.810715331] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [ERROR] [1782168696.810732312] [moveit_ros.trajectory_execution_manager]: Unable to identify any set of controllers that can actuate the specified joints: [ finger_left_joint finger_right_joint ]
+[move_group-10] [ERROR] [1782168696.810761527] [moveit_ros.trajectory_execution_manager]: Known controllers and their joints:
+[move_group-10] controller 'arm_trajectory_controller' controls joints:
+[move_group-10]   Joint_1
+[move_group-10]   Joint_2
+[move_group-10]   Joint_3
+[move_group-10]   Joint_4
+[move_group-10] controller 'bobby_arm_controller' controls joints:
+[move_group-10]   joint_1
+[move_group-10]   joint_2
+[move_group-10]   joint_3
+[move_group-10]   joint_4
+[move_group-10]   joint_5
+[move_group-10]   joint_6
+[move_group-10] controller 'bobby_gripper_controller' controls joints:
+[move_group-10]   finger_left_joint
+[move_group-10] 
+[move_group-10] [ERROR] [1782168696.810790340] [moveit_ros.plan_execution]: Apparently trajectory initialization failed
+[move_group-10] [INFO] [1782168696.810830876] [moveit_move_group_default_capabilities.move_action_capability]: Solution found but controller failed during execution
+[move_group-10] [INFO] [1782168697.661607510] [moveit_move_group_default_capabilities.move_action_capability]: Received request
+[move_group-10] [INFO] [1782168697.661775913] [moveit_move_group_default_capabilities.move_action_capability]: executing..
+[move_group-10] [WARN] [1782168697.761895185] [moveit_ros.current_state_monitor]: No state update received within 100ms of system clock. Have been waiting for 0.000000s, timeout is 1.000000s
+[move_group-10] [INFO] [1782168698.194572499] [moveit_move_group_default_capabilities.move_action_capability]: Combined planning and execution request received for MoveGroup action. Forwarding to planning and execution pipeline.
+[move_group-10] [INFO] [1782168698.374709683] [moveit_ros.plan_execution]: Planning attempt 1 of at most 1
+[move_group-10] [INFO] [1782168698.374777589] [moveit_move_group_capabilities_base.move_group_capability]: Using planning pipeline 'ompl'
+[move_group-10] [INFO] [1782168698.375046520] [moveit_ros.fix_start_state_bounds]: Starting state is just outside bounds (joint 'finger_right_joint'). Assuming within bounds.
+[move_group-10] [INFO] [1782168698.375518067] [moveit.ompl_planning.model_based_planning_context]: Planner configuration 'bobby_gripper' will use planner 'geometric::RRTConnect'. Additional configuration parameters will be set when the planner is constructed.
+[move_group-10] [INFO] [1782168698.405259331] [moveit.ros_planning.planning_pipeline]: Planning adapters have added states at index positions: [ 0 ]
+[move_group-10] [INFO] [1782168698.405791260] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168698.405817068] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168698.405840812] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [INFO] [1782168698.405846924] [moveit.plugins.moveit_simple_controller_manager]: Returned 3 controllers in list
+[move_group-10] [ERROR] [1782168698.405858004] [moveit_ros.trajectory_execution_manager]: Unable to identify any set of controllers that can actuate the specified joints: [ finger_left_joint finger_right_joint ]
+[move_group-10] [ERROR] [1782168698.405888471] [moveit_ros.trajectory_execution_manager]: Known controllers and their joints:
+[move_group-10] controller 'arm_trajectory_controller' controls joints:
+[move_group-10]   Joint_1
+[move_group-10]   Joint_2
+[move_group-10]   Joint_3
+[move_group-10]   Joint_4
+[move_group-10] controller 'bobby_arm_controller' controls joints:
+[move_group-10]   joint_1
+[move_group-10]   joint_2
+[move_group-10]   joint_3
+[move_group-10]   joint_4
+[move_group-10]   joint_5
+[move_group-10]   joint_6
+[move_group-10] controller 'bobby_gripper_controller' controls joints:
+[move_group-10]   finger_left_joint
+[move_group-10] 
+[move_group-10] [ERROR] [1782168698.405896626] [moveit_ros.plan_execution]: Apparently trajectory initialization failed
+[move_group-10] [INFO] [1782168698.405928245] [moveit_move_group_default_capabilities.move_action_capability]: Solution found but controller failed during execution
+[sonar_belt_stopper-16] [INFO] [1782168704.324613473] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168714.399654010] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[sonar_belt_stopper-16] [INFO] [1782168724.451839878] [sonar_belt_stopper]: belt1 sonar: object at 0.043 m — stopping belt and publishing event.
+[ERROR] [gzserver-1]: process has died [pid 8395, exit code -9, cmd 'gzserver /ros2_ws/install/scara_robot_pkg/share/scara_robot_pkg/worlds/two_conveyors.world -slibgazebo_ros_init.so -slibgazebo_ros_factory.so -slibgazebo_ros_force_system.so'].
+[move_group-10] [WARN] [1782168735.929141925] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[move_group-10] [WARN] [1782168735.929195655] [tf2_buffer]: Detected jump back in time. Clearing TF buffer.
+[robot_state_publisher-3] [WARN] [1782168738.421003515] [robot_state_publisher]: Moved backwards in time, re-publishing joint transforms!
+[ERROR] [move_group-10]: process has died [pid 8413, exit code -9, cmd '/opt/ros/humble/lib/moveit_ros_move_group/move_group --ros-args --params-file /tmp/launch_params_2lutpk0d --params-file /tmp/launch_params_i_oj58qn'].
+[move_group-10] [0m

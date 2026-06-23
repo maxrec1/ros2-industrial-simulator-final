@@ -160,6 +160,14 @@ def generate_launch_description():
                    '-x', '0.0', '-y', '1.0', '-z', '0.0', '-timeout', '120.0'],
         output='screen',
     )
+    # Drop box stands on its own pedestal (top at z=0.8), same x,y as the box.
+    spawn_drop_box_pedestal = Node(
+        package='gazebo_ros', executable='spawn_entity.py',
+        arguments=['-file', pedestal_urdf, '-entity', 'drop_box_pedestal',
+                   '-x', '0.0', '-y', '1.45', '-z', '0.0', '-timeout', '120.0'],
+        output='screen',
+    )
+
     drop_box_urdf = os.path.join(scara_pkg, 'urdf', 'drop_box.urdf')
     spawn_drop_box = Node(
         package='gazebo_ros', executable='spawn_entity.py',
@@ -272,6 +280,7 @@ def generate_launch_description():
         belt2_sonar_tf,
         spawn_scara_pedestal,
         spawn_bobby_pedestal,
+        spawn_drop_box_pedestal,
         spawn_drop_box,
         spawn_combined,
         spawn_controllers,

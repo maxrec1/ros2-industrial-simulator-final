@@ -50,11 +50,13 @@ bobby_arm_controller:
       - position
       - velocity
 
-# bobby parallel gripper (finger_right mimics finger_left in the URDF)
+# bobby parallel gripper. gazebo_ros2_control 0.4.10 has no mimic support, so
+# both fingers are driven actively (mirrored values) instead of via <mimic>.
 bobby_gripper_controller:
   ros__parameters:
     joints:
       - finger_left_joint
+      - finger_right_joint
     command_interfaces:
       - position
     state_interfaces:

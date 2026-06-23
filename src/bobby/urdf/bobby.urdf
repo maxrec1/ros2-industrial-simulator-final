@@ -487,7 +487,6 @@
     <child link="finger_right"/>
     <axis xyz="1 0 0"/>
     <limit lower="-0.04" upper="0" effort="50" velocity="0.1"/>
-    <mimic joint="finger_left_joint" multiplier="-1" offset="0"/>
   </joint>
 
   <!-- TCP: mittig zwischen den Backen, an der Backenspitze -->

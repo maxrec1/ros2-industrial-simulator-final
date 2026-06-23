@@ -34,3 +34,4 @@ moveit_simple_controller_manager:
     default: true
     joints:
       - finger_left_joint
+      - finger_right_joint

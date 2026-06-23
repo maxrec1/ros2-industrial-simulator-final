@@ -1,6 +1,10 @@
 <?xml version="1.0"?>
 <robot name="drop_box">
+  <!-- Shallow drop tray: walls are twice the PCB height (PCB z=9.4mm -> wall=18.8mm).
+       Base 2cm thick; walls rise from z=0.02 to z=0.0388. Stands on its own pedestal
+       (spawned separately at the same x,y), top of pedestal at z=0.8. -->
   <link name="drop_box">
+    <!-- Floor -->
     <visual>
       <origin xyz="0 0 0.01" rpy="0 0 0"/>
       <geometry><box size="0.36 0.36 0.02"/></geometry>
@@ -11,48 +15,52 @@
       <geometry><box size="0.36 0.36 0.02"/></geometry>
     </collision>
 
+    <!-- +x wall -->
     <visual>
-      <origin xyz="0.18 0 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.02 0.36 0.20"/></geometry>
+      <origin xyz="0.18 0 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.36 0.0188"/></geometry>
       <material name="box_orange"/>
     </visual>
     <collision>
-      <origin xyz="0.18 0 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.02 0.36 0.20"/></geometry>
+      <origin xyz="0.18 0 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.36 0.0188"/></geometry>
     </collision>
 
+    <!-- -x wall -->
     <visual>
-      <origin xyz="-0.18 0 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.02 0.36 0.20"/></geometry>
+      <origin xyz="-0.18 0 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.36 0.0188"/></geometry>
       <material name="box_orange"/>
     </visual>
     <collision>
-      <origin xyz="-0.18 0 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.02 0.36 0.20"/></geometry>
+      <origin xyz="-0.18 0 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.02 0.36 0.0188"/></geometry>
     </collision>
 
+    <!-- +y wall -->
     <visual>
-      <origin xyz="0 0.18 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.36 0.02 0.20"/></geometry>
+      <origin xyz="0 0.18 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.36 0.02 0.0188"/></geometry>
       <material name="box_orange"/>
     </visual>
     <collision>
-      <origin xyz="0 0.18 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.36 0.02 0.20"/></geometry>
+      <origin xyz="0 0.18 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.36 0.02 0.0188"/></geometry>
     </collision>
 
+    <!-- -y wall -->
     <visual>
-      <origin xyz="0 -0.18 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.36 0.02 0.20"/></geometry>
+      <origin xyz="0 -0.18 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.36 0.02 0.0188"/></geometry>
       <material name="box_orange"/>
     </visual>
     <collision>
-      <origin xyz="0 -0.18 0.11" rpy="0 0 0"/>
-      <geometry><box size="0.36 0.02 0.20"/></geometry>
+      <origin xyz="0 -0.18 0.0294" rpy="0 0 0"/>
+      <geometry><box size="0.36 0.02 0.0188"/></geometry>
     </collision>
 
     <inertial>
-      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <origin xyz="0 0 0.02" rpy="0 0 0"/>
       <mass value="1.0"/>
       <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
     </inertial>

@@ -1,0 +1,64 @@
+# Bobby arm path-planning waypoints.
+# Joint values captured from /joint_states after manual RViz Plan+Execute.
+# Group: bobby_arm (joint_1..6) + gripper (finger_left_joint).
+joint_names: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
+
+positions:
+  approach:
+    joint_1: -2.1328074947645863
+    joint_2: 1.7627098991325099
+    joint_3: 1.520949758160289
+    joint_4: -1.28526672284287
+    joint_5: 0.199702385306467
+    joint_6: -0.6430460552699113
+    finger_left_joint: 0.039910520495171034
+    finger_right_joint: -0.03991028262053683
+
+  next_to_chip:
+    joint_1: -2.1317719486701856
+    joint_2: 1.868248881109741
+    joint_3: 1.49458709398297
+    joint_4: -1.3232285120383462
+    joint_5: 0.3076355026316424
+    joint_6: -0.6912242965400592
+    finger_left_joint: 0.039624130624101486
+
+  grabbed:
+    joint_1: -2.2064238684967696
+    joint_2: 1.868682906735554
+    joint_3: 1.5938660432669414
+    joint_4: -1.622160939218877
+    joint_5: 0.29845786438141886
+    joint_6: -1.034450731280339
+    finger_left_joint: 0.03166044918996062
+    finger_right_joint: -0.02625361978111019
+
+  pre_grab:
+    joint_1: -2.1328074947645854
+    joint_2: 1.7627098991325099
+    joint_3: 1.520949758160289
+    joint_4: -1.2852667228428682
+    joint_5: 0.1997023853064679
+    joint_6: -0.6430460552699104
+    finger_left_joint: 0.03991052049517098
+    finger_right_joint: -0.0399102826205369
+
+  ablage:
+    joint_1: -0.8017425942517882
+    joint_2: -1.6313887540255365
+    joint_3: -1.5862659546014104
+    joint_4: 1.3624335768052873
+    joint_5: -0.028905107447065426
+    joint_6: -2.555256866868672
+    finger_left_joint: 0.03166041479725982
+    finger_right_joint: -0.026253654174324636
+
+  ready_for_drop_off:
+    joint_1: -0.8035043392946264
+    joint_2: -1.4469804222016451
+    joint_3: -1.6645932258582121
+    joint_4: 1.1424887420280445
+    joint_5: 0.17205931757520432
+    joint_6: -2.7830862932258826
+    finger_left_joint: 0.031660173822583196
+    finger_right_joint: -0.026253895152328854

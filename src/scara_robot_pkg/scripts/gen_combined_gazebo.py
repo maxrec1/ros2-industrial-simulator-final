@@ -43,7 +43,8 @@ BOBBY_LINKS = [
     "gripper_flange", "gripper_base", "finger_left", "finger_right", "TCP",
 ]
 BOBBY_CONTROL_JOINTS = ["joint_1", "joint_2", "joint_3", "joint_4",
-                        "joint_5", "joint_6", "finger_left_joint"]
+                        "joint_5", "joint_6",
+                        "finger_left_joint", "finger_right_joint"]
 BOBBY_INITIAL_POSITIONS = {
     "joint_1": "0.0",
     "joint_2": "0.0",
@@ -52,6 +53,7 @@ BOBBY_INITIAL_POSITIONS = {
     "joint_5": "0.0",
     "joint_6": "0.0",
     "finger_left_joint": "0.02",
+    "finger_right_joint": "-0.02",
 }
 
 SCARA_PEDESTAL_XYZ = "-1 0 0.8"

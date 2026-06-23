@@ -8,6 +8,7 @@
     </group>
     <group name="bobby_gripper">
         <joint name="finger_left_joint"/>
+        <joint name="finger_right_joint"/>
     </group>
     <group name="both_arms">
         <group name="scara_arm"/>
@@ -64,7 +65,7 @@
     </group_state>
     <group_state name="bobby_home" group="bobby_arm">
         <joint name="joint_1" value="0"/>
-        <joint name="joint_2" value="0."/>
+        <joint name="joint_2" value="0"/>
         <joint name="joint_3" value="0"/>
         <joint name="joint_4" value="0"/>
         <joint name="joint_5" value="0"/>
@@ -72,9 +73,60 @@
     </group_state>
     <group_state name="bobby_open" group="bobby_gripper">
         <joint name="finger_left_joint" value="0.04"/>
+        <joint name="finger_right_joint" value="-0.04"/>
     </group_state>
     <group_state name="bobby_close" group="bobby_gripper">
         <joint name="finger_left_joint" value="0"/>
+        <joint name="finger_right_joint" value="0"/>
+    </group_state>
+
+    <group_state name="approach" group="bobby_arm">
+        <joint name="joint_1" value="-2.1328074947645863"/>
+        <joint name="joint_2" value="1.7627098991325099"/>
+        <joint name="joint_3" value="1.520949758160289"/>
+        <joint name="joint_4" value="-1.28526672284287"/>
+        <joint name="joint_5" value="0.199702385306467"/>
+        <joint name="joint_6" value="-0.6430460552699113"/>
+    </group_state>
+    <group_state name="grabbed" group="bobby_arm">
+        <joint name="joint_1" value="-2.2064238684967696"/>
+        <joint name="joint_2" value="1.868682906735554"/>
+        <joint name="joint_3" value="1.5938660432669414"/>
+        <joint name="joint_4" value="-1.622160939218877"/>
+        <joint name="joint_5" value="0.29845786438141886"/>
+        <joint name="joint_6" value="-1.034450731280339"/>
+    </group_state>
+    <group_state name="pre_grab" group="bobby_arm">
+        <joint name="joint_1" value="-2.1328074947645854"/>
+        <joint name="joint_2" value="1.7627098991325099"/>
+        <joint name="joint_3" value="1.520949758160289"/>
+        <joint name="joint_4" value="-1.2852667228428682"/>
+        <joint name="joint_5" value="0.1997023853064679"/>
+        <joint name="joint_6" value="-0.6430460552699104"/>
+    </group_state>
+    <group_state name="ablage" group="bobby_arm">
+        <joint name="joint_1" value="-0.8017425942517882"/>
+        <joint name="joint_2" value="-1.6313887540255365"/>
+        <joint name="joint_3" value="-1.5862659546014104"/>
+        <joint name="joint_4" value="1.3624335768052873"/>
+        <joint name="joint_5" value="-0.028905107447065426"/>
+        <joint name="joint_6" value="-2.555256866868672"/>
+    </group_state>
+    <group_state name="ready_for_drop_off" group="bobby_arm">
+        <joint name="joint_1" value="-0.8035043392946264"/>
+        <joint name="joint_2" value="-1.4469804222016451"/>
+        <joint name="joint_3" value="-1.6645932258582121"/>
+        <joint name="joint_4" value="1.1424887420280445"/>
+        <joint name="joint_5" value="0.17205931757520432"/>
+        <joint name="joint_6" value="-2.7830862932258826"/>
+    </group_state>
+    <group_state name="next_to_chip" group="bobby_arm">
+        <joint name="joint_1" value="-2.1317719486701856"/>
+        <joint name="joint_2" value="1.868248881109741"/>
+        <joint name="joint_3" value="1.49458709398297"/>
+        <joint name="joint_4" value="-1.3232285120383462"/>
+        <joint name="joint_5" value="0.3076355026316424"/>
+        <joint name="joint_6" value="-0.6912242965400592"/>
     </group_state>
 
     <end_effector name="scara_eef" parent_link="Link_4" group="scara_arm"/>
